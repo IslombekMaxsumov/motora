@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avtosalon</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#f4f4f2">
+  <!-- Apply the saved theme before the page is drawn, so it never flashes. -->
+  <script>
+    window.APP_NS = "cars";
+    try {
+      var savedTheme = localStorage.getItem("cars:theme");
+      document.documentElement.setAttribute("data-theme", savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script defer src="js/core.js"></script>
+  <script defer src="js/lang.js"></script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/calc.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/layout.js"></script>
+  <script defer src="js/pages/garage.js"></script>
+</head>
+<body data-page="garage">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container page">
+    <h1 class="page-title" data-i18n="page.garage"></h1>
+    <nav class="jump-links" data-i18n-aria="garage.jump"><a href="#saved" data-i18n="garage.saved"></a><a href="#compare" data-i18n="garage.compare"></a><a href="#drives" data-i18n="garage.drives"></a><a href="#recent" data-i18n="garage.recent"></a></nav>
+    <section id="saved" class="section" aria-labelledby="savedTitle"><h2 id="savedTitle" data-i18n="garage.saved"></h2><div id="savedList"></div></section>
+    <section id="compare" class="section" aria-labelledby="compareTitle"><h2 id="compareTitle" data-i18n="garage.compare"></h2><div id="compareView"></div></section>
+    <section id="drives" class="section" aria-labelledby="drivesTitle"><h2 id="drivesTitle" data-i18n="garage.drives"></h2><div id="driveList"></div></section>
+    <section id="recent" class="section" aria-labelledby="recentTitle"><h2 id="recentTitle" data-i18n="garage.recent"></h2><div id="recentList"></div></section>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <div id="toasts" class="toast-host" aria-live="polite"></div>
+</body>
+</html>

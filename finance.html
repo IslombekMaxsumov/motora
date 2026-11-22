@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avtosalon</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#f4f4f2">
+  <!-- Apply the saved theme before the page is drawn, so it never flashes. -->
+  <script>
+    window.APP_NS = "cars";
+    try {
+      var savedTheme = localStorage.getItem("cars:theme");
+      document.documentElement.setAttribute("data-theme", savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script defer src="js/core.js"></script>
+  <script defer src="js/lang.js"></script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/calc.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/layout.js"></script>
+  <script defer src="js/pages/finance.js"></script>
+</head>
+<body data-page="finance">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container page">
+    <h1 class="page-title" data-i18n="page.finance"></h1>
+    <p class="lead" data-i18n="finance.intro"></p>
+    <div class="finance-layout">
+      <form id="financeForm" class="finance-form" novalidate></form>
+      <section class="finance-result" aria-labelledby="payTitle">
+        <h2 id="payTitle" class="visually-hidden" data-i18n="finance.result"></h2>
+        <div id="payment" class="payment" aria-live="polite"></div>
+        <div id="chart" class="chart"></div>
+        <details class="schedule"><summary data-i18n="finance.schedule"></summary><div id="scheduleTable" class="table-wrap"></div></details>
+        <div id="afford" class="afford"></div>
+      </section>
+    </div>
+    <section class="section" aria-labelledby="budgetTitle">
+      <h2 id="budgetTitle" data-i18n="finance.budgetTitle"></h2>
+      <p data-i18n="finance.budgetIntro"></p>
+      <div id="budgetTool" class="budget-tool"></div>
+    </section>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <div id="toasts" class="toast-host" aria-live="polite"></div>
+</body>
+</html>

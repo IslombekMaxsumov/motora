@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avtosalon</title>
+  <meta name="description" content="">
+  <meta name="theme-color" content="#f4f4f2">
+  <!-- Apply the saved theme before the page is drawn, so it never flashes. -->
+  <script>
+    window.APP_NS = "cars";
+    try {
+      var savedTheme = localStorage.getItem("cars:theme");
+      document.documentElement.setAttribute("data-theme", savedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script defer src="js/core.js"></script>
+  <script defer src="js/lang.js"></script>
+  <script defer src="js/data.js"></script>
+  <script defer src="js/calc.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/layout.js"></script>
+  <script defer src="js/pages/home.js"></script>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container page home-page">
+    <section class="hero" aria-labelledby="homeTitle">
+      <p class="eyebrow" id="heroStats"></p>
+      <h1 id="homeTitle" data-i18n="home.title"></h1>
+      <p class="lead" data-i18n="home.intro"></p>
+      <form id="quickSearch" class="quick-search" action="cars.html">
+        <div class="field"><label for="qsBody" data-i18n="filter.body"></label><select id="qsBody" name="body" class="select"></select></div>
+        <div class="field"><label for="qsPrice" data-i18n="home.budget"></label><select id="qsPrice" name="priceMax" class="select"></select></div>
+        <div class="field"><label for="qsCondition" data-i18n="filter.condition"></label><select id="qsCondition" name="condition" class="select"></select></div>
+        <button type="submit" class="btn" id="qsSubmit"></button>
+      </form>
+      <p class="hero-finder"><span data-i18n="home.notSure"></span> <a href="finder.html" data-i18n="home.toFinder"></a></p>
+    </section>
+    <section class="section" aria-labelledby="newTitle">
+      <div class="section-head"><h2 id="newTitle" data-i18n="home.newTitle"></h2><a class="more-link" href="cars.html?condition=new" data-i18n="home.allNew"></a></div>
+      <div id="newList" class="card-grid"></div>
+    </section>
+    <section class="section" aria-labelledby="bodyTitle">
+      <h2 id="bodyTitle" data-i18n="home.bodyTitle"></h2>
+      <ul id="bodyList" class="tile-list"></ul>
+    </section>
+    <section class="section" aria-labelledby="toolsTitle">
+      <h2 id="toolsTitle" data-i18n="home.toolsTitle"></h2>
+      <ul id="toolList" class="tool-list"></ul>
+    </section>
+    <section class="section" id="recentSection" aria-labelledby="recentTitle" hidden>
+      <h2 id="recentTitle" data-i18n="home.recent"></h2>
+      <div id="recentList" class="card-grid"></div>
+    </section>
+    <section class="section" aria-labelledby="roomTitle">
+      <h2 id="roomTitle" data-i18n="home.showrooms"></h2>
+      <ul id="roomList" class="room-list"></ul>
+    </section>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <div id="toasts" class="toast-host" aria-live="polite"></div>
+</body>
+</html>
