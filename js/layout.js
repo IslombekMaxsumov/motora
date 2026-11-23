@@ -61,8 +61,11 @@
   }
 
   /* ---------- formatting ---------- */
+  // Uzbek groups digits with spaces and uses a decimal comma, like Russian; many
+  // browsers have no Uzbek number data and would fall back to "11,672,000"
+  const NUM_LOCALE = { en: "en-GB", ru: "ru-RU", uz: "ru-RU" };
   function num(n, digits = 0) {
-    try { return new Intl.NumberFormat(LOCALE[lang()], { maximumFractionDigits: digits, minimumFractionDigits: 0 }).format(n); }
+    try { return new Intl.NumberFormat(NUM_LOCALE[lang()], { maximumFractionDigits: digits, minimumFractionDigits: 0 }).format(n); }
     catch (e) { return String(Math.round(n)); }
   }
   // so'm, rounded to the thousand: 3 923 000 so'm
@@ -78,6 +81,33 @@
   function fromMonthly(c) {
     const price = c.price * Calc.MLN;
     return Calc.loan({ price, down: price * 0.3, rate: DATA.FINANCE.rate, months: 36 }).monthly;
+  }
+  // so'm as short millions, for the ownership cost: "4.8 mln so'm"
+  const mlnShort = (som) => t("money.mln", { n: num(som / Calc.MLN, som < 10 * Calc.MLN ? 1 : 0) });
+  // the MOTORA ownership cost for the visitor's own km a week
+  const ownership = (c) => Calc.ownership(c, { kmWeek: Store.costPrefs().kmWeek });
+
+  /* ---------- motion ---------- */
+  const calm = () => window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // count a number smoothly to its new value (immediately with reduced motion)
+  function tween(node, to, format, ms = 260) {
+    const from = Number(node.dataset.value);
+    node.dataset.value = String(to);
+    if (calm() || !Number.isFinite(from) || from === to) { node.textContent = format(to); return; }
+    const start = performance.now();
+    const step = (now) => {
+      const k = Math.min(1, (now - start) / ms);
+      const eased = 1 - Math.pow(1 - k, 3);
+      node.textContent = format(from + (to - from) * eased);
+      if (k < 1 && node.dataset.value === String(to)) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- logo (inline, takes the theme colours; js/logo.js) ---------- */
+  function logoSvg() {
+    return svgEl("svg", { viewBox: `0 0 ${LOGO.width} ${LOGO.height}`, class: "logo-svg", "aria-hidden": "true", focusable: "false" },
+      svgEl("path", { d: LOGO.word, class: "logo-word" }), svgEl("path", { d: LOGO.bar, class: "logo-bar" }));
   }
 
   /* ---------- photos (js/photos.js, added later) ----------
@@ -144,27 +174,44 @@
       c.m.fuel === "phev" && el("li", { class: "badge", text: t("fuel.phev") }),
       c.methane && el("li", { class: "badge", text: t("badge.methane") }));
   }
+  // the ownership line: "≈ 4.8 mln so'm / month" and "Loan 3.5 mln · Running 1.3 mln"
+  function ownLine(c, cls = "own") {
+    const o = ownership(c);
+    return el("div", { class: cls },
+      el("p", { class: "own-total" }, el("span", { class: "own-label", text: t("own.label") }), " ", el("strong", { text: t("own.perMonth", { sum: mlnShort(o.total) }) })),
+      el("p", { class: "own-parts", text: t("own.parts", { loan: mlnShort(o.loan), running: mlnShort(o.running) }) }));
+  }
   function card(c, opts = {}) {
-    return el("article", { class: "car-card" },
-      el("div", { class: "card-photo" }, photo(c, { sizes: opts.sizes || "(min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" }), badges(c)),
+    return el("article", { class: "car-card", "data-car": c.id },
+      el("div", { class: "card-photo" }, photo(c, { sizes: opts.sizes || "(min-width: 960px) 30vw, (min-width: 640px) 45vw, 50vw" }), badges(c)),
       el("div", { class: "card-body" },
         el("h3", { class: "card-title" }, el("a", { href: "car.html?id=" + c.id, text: carTitle(c) }), el("span", { class: "card-trim", text: " " + c.trim })),
         el("p", { class: "card-line", text: carLine(c) }),
-        el("p", { class: "card-price" }, el("strong", { text: mln(c.price) }),
-          el("span", { class: "card-monthly", text: t("card.from", { sum: money(fromMonthly(c)) }) })),
+        el("p", { class: "card-price price", text: mln(c.price) }),
+        ownLine(c),
         opts.extra || null,
         el("div", { class: "card-actions" }, saveButton(c), compareButton(c))));
   }
 
   /* ---------- small form helpers ---------- */
-  // a range slider with a visible value; onInput(value) runs while dragging
-  function slider({ id, label, min, max, step, value, format, onInput, hint }) {
+  // a range slider with its value, its minimum and maximum, and a filled track;
+  // onInput(value) runs while dragging
+  function slider({ id, label, min, max, step, value, format, onInput, hint, formatEnd }) {
     const out = el("output", { for: id, class: "slider-value", text: format(value) });
-    const input = el("input", { type: "range", id, min, max, step, value, class: "slider",
+    const pct = (v) => `${((v - min) / (max - min)) * 100}%`;
+    const end = formatEnd || format;
+    const input = el("input", { type: "range", id, min, max, step, value, class: "slider", style: `--pct:${pct(value)}`,
       "aria-valuetext": format(value),
-      oninput: (e) => { const v = Number(e.target.value); out.textContent = format(v); e.target.setAttribute("aria-valuetext", format(v)); onInput(v); } });
+      oninput: (e) => {
+        const v = Number(e.target.value);
+        out.textContent = format(v);
+        e.target.style.setProperty("--pct", pct(v));
+        e.target.setAttribute("aria-valuetext", format(v));
+        onInput(v);
+      } });
     return el("div", { class: "field slider-field" },
       el("div", { class: "slider-head" }, el("label", { for: id, text: label }), out), input,
+      el("div", { class: "slider-range", "aria-hidden": "true" }, el("span", { text: end(min) }), el("span", { text: end(max) })),
       hint && el("p", { class: "hint", text: hint }));
   }
   // a group of radio "chips"
@@ -185,8 +232,8 @@
     const h = Number(b.time.slice(0, 2));
     const stamp = (hour) => `${day}T${String(hour).padStart(2, "0")}0000`;
     const esc = (s) => String(s).replace(/[\\,;]/g, (m) => "\\" + m).replace(/\n/g, "\\n");
-    const text = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Avtosalon demo//EN", "BEGIN:VEVENT",
-      `UID:${b.code}@avtosalon.demo`, `DTSTAMP:${stamp(h)}`, `DTSTART:${stamp(h)}`, `DTEND:${stamp(h + 1)}`,
+    const text = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//MOTORA demo//EN", "BEGIN:VEVENT",
+      `UID:${b.code}@motora.demo`, `DTSTAMP:${stamp(h)}`, `DTSTART:${stamp(h)}`, `DTEND:${stamp(h + 1)}`,
       `SUMMARY:${esc(t("drive.icsTitle", { car: c.title }))}`,
       `LOCATION:${esc(`${t("city." + room.city)}, ${room.address[lang()]}`)}`,
       `DESCRIPTION:${esc(t("drive.icsText", { code: b.code }))}`, "END:VEVENT", "END:VCALENDAR"].join("\r\n");
@@ -204,12 +251,12 @@
     const nav = el("nav", { class: "site-nav", "data-i18n-aria": "nav.label" },
       el("ul", null, NAV.map(([key, href, ic]) =>
         el("li", null, el("a", { href, "aria-current": current === key ? "page" : null },
-          icon(ic, 20), el("span", { "data-i18n": "page." + key }), key === "garage" ? el("span", { class: "nav-count", id: "garageCount" }) : null)))));
+          icon(ic, 20), el("span", { class: "nav-full", "data-i18n": "page." + key }), el("span", { class: "nav-short", "aria-hidden": "true", "data-i18n": "nav.short." + key }), key === "garage" ? el("span", { class: "nav-count", id: "garageCount" }) : null)))));
     const langs = el("div", { class: "seg", role: "group", "data-i18n-aria": "lang.label" },
       ["uz", "ru", "en"].map((code) => el("button", { type: "button", "data-lang": code, lang: code, text: code.toUpperCase() })));
     const theme = el("button", { type: "button", id: "themeToggle", class: "icon-btn" }, el("span", { class: "i-sun" }, icon("sun", 20)), el("span", { class: "i-moon" }, icon("moon", 20)));
     host.append(el("div", { class: "container header-bar" },
-      el("a", { class: "brand", href: "index.html" }, el("span", { class: "brand-name", "data-i18n": "brand.name" })),
+      el("a", { class: "brand", href: "index.html" }, logoSvg(), el("span", { class: "visually-hidden", "data-i18n": "brand.home" })),
       nav,
       el("div", { class: "header-tools" }, langs, theme)));
     document.body.classList.add("has-tabbar");
@@ -226,7 +273,7 @@
     const host = $("site-footer");
     if (!host) return;
     host.replaceChildren(el("div", { class: "container footer-inner" },
-      el("div", { class: "footer-brand" }, el("p", { class: "brand-name", text: t("brand.name") }), el("p", { text: t("footer.about") })),
+      el("div", { class: "footer-brand" }, logoSvg(), el("p", { text: t("footer.about") })),
       el("div", { class: "footer-col" }, el("h2", { text: t("footer.tools") }),
         el("ul", null, [["finder", "finder.html"], ["finance", "finance.html"], ["tradein", "tradein.html"], ["testdrive", "testdrive.html"]].map(([k, href]) => el("li", null, el("a", { href, text: t("page." + k) }))))),
       el("div", { class: "footer-col" }, el("h2", { text: t("footer.showrooms") }),
@@ -249,5 +296,5 @@
     Core.init();
   }
 
-  window.Site = { el, svgEl, $, icon, num, money, mln, km, brandName, carTitle, carLine, fromMonthly, photos, photo, saveButton, compareButton, badges, card, slider, choice, icsLink, setTitle, start, lang };
+  window.Site = { el, svgEl, $, icon, num, money, mln, km, brandName, carTitle, carLine, fromMonthly, photos, photo, saveButton, compareButton, badges, card, ownLine, ownership, mlnShort, tween, calm, logoSvg, slider, choice, icsLink, setTitle, start, lang };
 })();

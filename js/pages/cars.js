@@ -41,9 +41,9 @@
   function priceFields() {
     // two sliders; if they cross, the other one moves along
     const fmt = (v) => (v ? mln(v) : t("filter.any"));
-    const lo = Site.slider({ id: "priceMin", label: t("filter.priceMin"), min: 0, max: PRICE_MAX, step: 10, value: f.priceMin, format: fmt,
+    const lo = Site.slider({ id: "priceMin", label: t("filter.priceMin"), min: 0, max: PRICE_MAX, step: 10, value: f.priceMin, format: fmt, formatEnd: mln,
       onInput: (v) => { if (f.priceMax && v > f.priceMax) syncSlider("priceMax", v); set({ priceMin: v }); } });
-    const hi = Site.slider({ id: "priceMax", label: t("filter.priceMax"), min: 0, max: PRICE_MAX, step: 10, value: f.priceMax || PRICE_MAX, format: (v) => (v >= PRICE_MAX ? t("filter.any") : mln(v)),
+    const hi = Site.slider({ id: "priceMax", label: t("filter.priceMax"), min: 0, max: PRICE_MAX, step: 10, value: f.priceMax || PRICE_MAX, format: (v) => (v >= PRICE_MAX ? t("filter.any") : mln(v)), formatEnd: mln,
       onInput: (v) => { const val = v >= PRICE_MAX ? 0 : v; if (val && f.priceMin > val) syncSlider("priceMin", val); set({ priceMax: val }); } });
     return el("fieldset", { class: "filter-group" }, el("legend", { text: t("filter.price") }), lo, hi);
   }
@@ -58,7 +58,7 @@
       checks("body", DATA.BODIES, (b) => t("body." + b)),
       priceFields(),
       Site.slider({ id: "kmMax", label: t("filter.kmMax"), min: 0, max: KM_MAX, step: 5000, value: f.kmMax || KM_MAX,
-        format: (v) => (v >= KM_MAX ? t("filter.any") : t("filter.upToKm", { km: km(v) })), onInput: (v) => set({ kmMax: v >= KM_MAX ? 0 : v }) }),
+        format: (v) => (v >= KM_MAX ? t("filter.any") : t("filter.upToKm", { km: km(v) })), formatEnd: km, onInput: (v) => set({ kmMax: v >= KM_MAX ? 0 : v }) }),
       select("yearMin", [[0, t("filter.any")], ...years.map((y) => [y, t("filter.fromYear", { year: y })])]),
       radios("condition", ["any", "new", "used"]),
       checks("fuel", DATA.FUELS, (v) => t("fuel." + v)),

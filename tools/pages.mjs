@@ -8,9 +8,13 @@ const head = (page) => `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avtosalon</title>
+  <title>MOTORA</title>
   <meta name="description" content="">
-  <meta name="theme-color" content="#f4f4f2">
+  <meta name="theme-color" content="#f2f2ee">
+  <link rel="icon" href="assets/brand/motora-favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=Manrope:wght@600..800&display=swap">
   <!-- Apply the saved theme before the page is drawn, so it never flashes. -->
   <script>
     window.APP_NS = "cars";
@@ -26,6 +30,7 @@ const head = (page) => `<!doctype html>
   <script defer src="js/data.js"></script>
   <script defer src="js/calc.js"></script>
   <script defer src="js/store.js"></script>
+  <script defer src="js/logo.js"></script>
   <script defer src="js/layout.js"></script>
   <script defer src="js/pages/${page}.js"></script>
 </head>
@@ -44,10 +49,15 @@ const PAGES = {
   index: ["home", `
   <main id="main" tabindex="-1" class="container page home-page">
     <section class="hero" aria-labelledby="homeTitle">
-      <p class="eyebrow" id="heroStats"></p>
-      <h1 id="homeTitle" data-i18n="home.title"></h1>
-      <p class="lead" data-i18n="home.intro"></p>
-      <form id="quickSearch" class="quick-search" action="cars.html">
+      <div class="hero-text">
+        <p class="eyebrow" data-i18n="home.eyebrow"></p>
+        <h1 id="homeTitle" data-i18n="home.title"></h1>
+        <p class="lead" data-i18n="home.intro"></p>
+        <ul id="heroStats" class="stats"></ul>
+      </div>
+      <div id="featured" class="featured"></div>
+      <form id="quickSearch" class="quick-search" action="cars.html" aria-labelledby="qsTitle">
+        <h2 id="qsTitle" class="qs-title" data-i18n="home.qsTitle"></h2>
         <div class="field"><label for="qsBody" data-i18n="filter.body"></label><select id="qsBody" name="body" class="select"></select></div>
         <div class="field"><label for="qsPrice" data-i18n="home.budget"></label><select id="qsPrice" name="priceMax" class="select"></select></div>
         <div class="field"><label for="qsCondition" data-i18n="filter.condition"></label><select id="qsCondition" name="condition" class="select"></select></div>
@@ -57,7 +67,7 @@ const PAGES = {
     </section>
     <section class="section" aria-labelledby="newTitle">
       <div class="section-head"><h2 id="newTitle" data-i18n="home.newTitle"></h2><a class="more-link" href="cars.html?condition=new" data-i18n="home.allNew"></a></div>
-      <div id="newList" class="card-grid"></div>
+      <div id="newList" class="card-grid card-row"></div>
     </section>
     <section class="section" aria-labelledby="bodyTitle">
       <h2 id="bodyTitle" data-i18n="home.bodyTitle"></h2>
@@ -97,6 +107,7 @@ const PAGES = {
         </div>
         <div id="activeFilters" class="active-filters"></div>
         <p id="count" class="result-count" aria-live="polite"></p>
+        <p class="hint own-note" data-i18n="own.note"></p>
         <div id="list" class="card-grid"></div>
         <div id="empty" class="empty" hidden>
           <h2 data-i18n="filter.emptyTitle"></h2>
@@ -109,7 +120,7 @@ const PAGES = {
 
   car: ["car", `
   <main id="main" tabindex="-1" class="container page car-page">
-    <a class="back-link" href="cars.html" data-i18n="car.back"></a>
+    <nav class="crumbs" id="crumbs" data-i18n-aria="crumb.label"></nav>
     <div id="view"></div>
   </main>`],
 

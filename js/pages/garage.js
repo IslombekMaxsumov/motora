@@ -18,7 +18,7 @@
 
   /* ---------- compare ---------- */
   const FORMAT = {
-    price: (v) => mln(v), year: String, km: (v) => km(v), hp: (v) => t("spec.hp", { n: v }), cost: (v) => money(v),
+    price: (v) => mln(v), ownership: (v) => Site.mlnShort(v), year: String, km: (v) => km(v), hp: (v) => t("spec.hp", { n: v }), cost: (v) => money(v),
     trunk: (v) => (v ? t("spec.litres", { n: num(v) }) : t("spec.cargo")), seats: String, clearance: (v) => t("spec.mm", { n: v }),
     airbags: String, warranty: (v) => t("garage.years", { count: v }),
   };
@@ -38,7 +38,7 @@
       Site.slider({ id: "cmpKm", label: t("cost.kmWeek"), min: 50, max: 2000, step: 50, value: kmWeek, format: (v) => km(v),
         onInput: (v) => { kmWeek = v; Store.setCostPrefs({ kmWeek: v }); fillTable(tableHost, cars); } }),
       tableHost,
-      el("p", { class: "hint", text: t("garage.compareNote") }),
+      el("p", { class: "hint", text: t("garage.compareNote") + " " + t("own.disclaimer") }),
       el("button", { type: "button", class: "btn btn-ghost", text: t("garage.clearCompare"), onclick: () => {
         const undo = Store.clearCompare();
         Core.toast(t("garage.cleared"), { label: t("toast.undo"), onClick: undo });
@@ -53,7 +53,7 @@
       el("span", { class: "hint", text: " " + (c.isNew ? t("car.new") : c.year) }),
       el("button", { type: "button", class: "icon-btn", "aria-label": t("compare.remove", { name: Site.carTitle(c) }), onclick: () => { Store.toggleCompare(c.id); } }, icon("x", 16)))));
     const body = rows.map((r) => el("tr", null,
-      el("th", { scope: "row", text: r.key === "cost" ? t("garage.costRow", { km: km(kmWeek) }) : t("compareRow." + r.key) }),
+      el("th", { scope: "row", text: r.key === "cost" ? t("garage.costRow", { km: km(kmWeek) }) : r.key === "ownership" ? t("garage.ownRow", { km: km(kmWeek) }) : t("compareRow." + r.key) }),
       r.values.map((v, i) => el("td", { class: r.best[i] ? "is-best" : null },
         FORMAT[r.key](v), r.best[i] ? el("span", { class: "best-mark" }, icon("check", 14), el("span", { class: "visually-hidden", text: t("garage.better") })) : null))));
     // how many rows each car wins

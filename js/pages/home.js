@@ -5,6 +5,7 @@
   const { t } = Core;
   const { el, $, card, mln, icon } = Site;
   const BUDGETS = [150, 200, 300, 450, 600, 1000];
+  const FEATURED = "c12"; // Chevrolet Tracker Premier, new
 
   function fillQuickSearch() {
     const keep = (sel) => sel.value;
@@ -26,7 +27,19 @@
 
   function render() {
     fillQuickSearch();
-    $("heroStats").textContent = t("home.stats", { cars: DATA.CARS.length, models: DATA.MODELS.length, rooms: DATA.SHOWROOMS.length });
+    $("heroStats").replaceChildren(...[["cars", DATA.CARS.length], ["models", DATA.MODELS.length], ["rooms", DATA.SHOWROOMS.length]].map(([k, n]) =>
+      el("li", null, el("strong", { class: "num", text: String(n) }), el("span", { text: t("home.stat." + k, { count: n }) }))));
+
+    // the featured car: a popular new crossover, with the MOTORA ownership cost
+    const f = DATA.car(FEATURED);
+    $("featured").replaceChildren(
+      el("a", { class: "featured-photo", href: "car.html?id=" + f.id, tabindex: "-1", "aria-hidden": "true" }, Site.photo(f, { eager: true, sizes: "(min-width: 960px) 600px, 100vw" })),
+      el("div", { class: "featured-info" },
+        el("p", { class: "eyebrow", text: t("home.featured") }),
+        el("h2", null, el("a", { href: "car.html?id=" + f.id, text: `${Site.carTitle(f)} ${f.trim}` })),
+        el("p", { class: "card-line", text: Site.carLine(f) }),
+        el("p", { class: "price featured-price", text: mln(f.price) }),
+        Site.ownLine(f)));
 
     const newest = Calc.sortCars(DATA.CARS.filter((c) => c.isNew), "recommended");
     // one car per model, so the four cards are four different cars

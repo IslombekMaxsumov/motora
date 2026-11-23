@@ -52,7 +52,8 @@
         } }),
       el("p", { id: "fPriceErr", class: "field-error", "aria-live": "polite" }));
     const rateKey = s.kind === "lease" ? "leaseRate" : "rate";
-    $("financeForm").replaceChildren(
+    // (filter: fields that are off for this choice are false, and replaceChildren would print "false")
+    $("financeForm").replaceChildren(...[
       carSelect, priceField,
       Site.choice({ name: "kind", legend: t("finance.kind"), value: s.kind, options: [["loan", t("finance.loan")], ["lease", t("finance.lease")]],
         onChange: (v) => { s.kind = v; renderForm(); update(); } }),
@@ -64,7 +65,7 @@
         el("span", { text: t("finance.useTrade", { car: ti.name, sum: mln(ti.value.mid) }) }))
         : el("p", { class: "hint" }, t("finance.noTrade"), " ", el("a", { href: "tradein.html", text: t("finance.toTrade") })),
       Site.slider({ id: "fMonths", label: t("finance.months"), min: DATA.FINANCE.minTerm, max: DATA.FINANCE.maxTerm, step: 6, value: s.months,
-        format: (v) => t("finance.monthsValue", { count: v, years: num(v / 12, 1) }), onInput: (v) => { s.months = v; update(); } }),
+        format: (v) => t("finance.monthsValue", { count: v, years: t("garage.years", { count: v / 12 }).replace(String(v / 12), num(v / 12, 1)) }), onInput: (v) => { s.months = v; update(); } }),
       el("div", { class: "field" },
         el("label", { for: "fRate", text: t("finance.rate") }),
         el("input", { id: "fRate", class: "input", type: "number", inputmode: "decimal", min: 0, max: 60, step: 0.5, value: s[rateKey], "aria-describedby": "fRateErr",
@@ -82,7 +83,7 @@
         el("label", { for: "fIncome", text: t("finance.income") }),
         el("input", { id: "fIncome", class: "input", type: "number", inputmode: "numeric", min: 0, step: 100000, value: s.income || "",
           placeholder: t("finance.incomePlaceholder"), oninput: (e) => { s.income = Math.max(0, Number(e.target.value) || 0); update(); } }),
-        el("p", { class: "hint", text: t("finance.incomeHint") })));
+        el("p", { class: "hint", text: t("finance.incomeHint") }))].filter(Boolean));
   }
 
   /* ---------- result ---------- */
@@ -95,6 +96,7 @@
       ? Calc.lease({ ...args, rate: s.leaseRate, residualPct: s.residual })
       : Calc.loan({ ...args, rate: s.rate });
   }
+  const payNode = el("p", { class: "pay-big" }); // kept between updates so the number can count smoothly
   function update() {
     persist();
     // the slider labels show amounts of the price, so refresh them when the price changes
@@ -112,9 +114,11 @@
     ].filter(Boolean);
     $("payment").replaceChildren(
       el("p", { class: "pay-label", text: t(r.kind === "lease" ? "finance.perMonthLease" : "finance.perMonth") }),
-      el("p", { class: "pay-big", text: r.principal > 0 ? money(r.monthly) : t("finance.nothing") }),
+      payNode,
+      el("p", { class: "hint", text: t("finance.estimate") }),
       el("dl", { class: "pay-rows" }, rows.map(([k, v]) => el("div", null, el("dt", { text: k }), el("dd", { text: v })))),
       el("p", { class: "hint", text: t("finance.overpay", { pct: price ? Math.round(((r.total - price) / price) * 100) : 0 }) }));
+    if (r.principal > 0) Site.tween(payNode, r.monthly, money); else { payNode.dataset.value = ""; payNode.textContent = t("finance.nothing"); }
     $("chart").replaceChildren(chart(r));
     $("scheduleTable").replaceChildren(table(r));
     afford(r);

@@ -89,6 +89,18 @@
     return { kmMonth, energy, litres, m3, kwh, eShare, insurance, service, total, year: total * 12, perKm: kmMonth ? total / kmMonth : 0 };
   }
 
+  /* ---------- MOTORA ownership cost ----------
+     The site's signature number: what a car costs a month to own, as an
+     ESTIMATE = a standard loan (30% down, 36 months, the default rate)
+     + running costs for the visitor's km a week. Not a bank offer. */
+  const OWN_LOAN = { downPct: 30, months: 36 };
+  function ownership(car, opts = {}) {
+    const price = car.price * MLN;
+    const loanPart = loan({ price, down: (price * OWN_LOAN.downPct) / 100, rate: D.FINANCE.rate, months: OWN_LOAN.months }).monthly;
+    const running = runningCost(car, { kmWeek: 300, methane: car.methane, ...opts }).total;
+    return { loan: loanPart, running, total: loanPart + running, ...OWN_LOAN, rate: D.FINANCE.rate };
+  }
+
   /* ---------- trade-in ----------
      A rough market estimate from the new price, age, mileage and condition. */
   const CONDITION = { excellent: 1.05, good: 1, fair: 0.9, poor: 0.75 };
@@ -318,6 +330,7 @@
       ["km", (c) => c.km, "low"],
       ["hp", (c) => c.m.hp, "high"],
       ["cost", (c) => runningCost(c, { kmWeek, methane: c.methane }).total, "low"],
+      ["ownership", (c) => ownership(c, { kmWeek }).total, "low"],
       ["trunk", (c) => c.m.trunk || 0, "high"],
       ["seats", (c) => c.m.seats, "high"],
       ["clearance", (c) => c.m.clearance, "high"],
@@ -332,7 +345,7 @@
     });
   }
 
-  const api = { payment, loan, lease, maxPrice, runningCost, tradeIn, checkTradeIn, find, bookingDays, slots, isoDate, phone, name, filterCars, sortCars, toQuery, fromQuery, FILTER_DEFAULTS, compare, MLN };
+  const api = { payment, loan, lease, maxPrice, runningCost, ownership, tradeIn, checkTradeIn, find, bookingDays, slots, isoDate, phone, name, filterCars, sortCars, toQuery, fromQuery, FILTER_DEFAULTS, compare, MLN };
   if (typeof window !== "undefined") window.Calc = api;
   if (typeof module !== "undefined") module.exports = api;
 })();

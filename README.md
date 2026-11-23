@@ -1,4 +1,4 @@
-# Avtosalon (working name): car dealership
+# MOTORA: car dealership
 
 Site #7 of my 10-websites course project: a car showroom selling cars that are sold in Uzbekistan (Chevrolet, BYD, Kia, Chery), in Uzbek, Russian and English. Plain HTML, CSS and JavaScript: no framework, no build step, no backend. Everything you save stays in your browser.
 
@@ -26,13 +26,17 @@ The rule for this site: the tools must do real work, not just "click this, click
 ## Data
 15 models and 32 cars in stock in `js/data.js`. **Specs, prices and fuel prices are approximate and only for this demo** (prices in million so'm; the calculators let you change fuel prices).
 
+## Design (MOTORA brief, 2026-11-23)
+- "Modern automotive editorial combined with a sophisticated financial interface": the cars give the emotion, the interface gives the information. Warm grey-white with deep green-black text and a muted gold accent (`css/base.css`, palette with AA fixes noted next to each token), Manrope for headings and numbers, Inter for text, tabular figures everywhere, borders instead of shadows.
+- **Logo:** the MOTORA wordmark, Manrope ExtraBold condensed to 88%, with a custom A whose crossbar floats in gold (`tools/logo.cjs` → `assets/brand`, `js/logo.js`).
+- **Signature: MOTORA ownership cost** = an estimated loan (30% down, 36 months) + running costs for your km a week (`Calc.ownership`). It is on every car card, the car page (it follows the running-cost calculator), the finder and the comparison, always marked as an estimate, not a bank offer.
+- Motion: finder results slide to their new places and score meters grow; the big totals count to their new value; save and compare give a small pop. All of it is off with "reduce motion".
+
 ## Not done yet
-- **Design:** `css/site.css` is layout only and `css/base.css` is the shared placeholder. The look will come from my design brief.
-- **Photos:** every car shows a plain plate with its name. The gallery is ready for 3 photos per model (front, side, interior) in `js/photos.js`.
-- **Name and logo:** "Avtosalon" is a working name.
+- **Photos:** every car shows a neutral plate with its brand and model. The brief asks for 3 real photos per model (front three-quarter, side, interior) that look like one set; the gallery and cards are ready for them (`js/photos.js`).
 
 ## Tests
-`node --test tests/calc.test.mjs`: 11 tests for the loan, lease, running costs, trade-in, finder, slots, phone and name checks, search, URL and comparison.
+`node --test tests/calc.test.mjs`: 12 tests for the loan, lease, running costs, ownership cost, trade-in, finder, slots, phone and name checks, search, URL and comparison.
 
 ## Files
 - `js/data.js` models, stock, showrooms, default prices; `js/calc.js` all the maths; `js/store.js` saved data; `js/layout.js` header, footer, cards, sliders; `js/pages/*.js` one file per page; `js/lang.js` UZ / RU / EN text; `js/core.js` language, theme, storage, toasts.

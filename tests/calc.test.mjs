@@ -157,3 +157,14 @@ test("compare marks the better value in each row", () => {
   const seats = rows.find((r) => r.key === "seats");
   assert.deepEqual(seats.best, [false, false]); // same: nothing marked
 });
+
+test("ownership cost = standard loan + running costs, as an estimate", () => {
+  const c = D.car("c03"); // Cobalt 128 mln, methane fitted
+  const o = C.ownership(c, { kmWeek: 300 });
+  const loanPart = C.loan({ price: 128 * MLN, down: 128 * MLN * 0.3, rate: D.FINANCE.rate, months: 36 }).monthly;
+  near(o.loan, loanPart, 0.01);
+  near(o.running, C.runningCost(c, { kmWeek: 300, methane: true }).total, 0.01);
+  near(o.total, o.loan + o.running, 0.01);
+  assert.ok(C.ownership(c, { kmWeek: 1000 }).total > o.total, "more driving costs more");
+  assert.ok(C.compare([c, D.car("c17")]).find((r) => r.key === "ownership").best[0], "the Cobalt is cheaper to own than a Tahoe");
+});

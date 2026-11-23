@@ -57,6 +57,8 @@
       prices: { ...DATA.PRICES, ...prefs.prices },
     };
     const out = el("div", { class: "cost-result", "aria-live": "polite" });
+    // the big total stays the same element, so it can count smoothly to its new value
+    const totalNode = el("strong", { class: "num" });
     function update() {
       const r = Calc.runningCost(c, state);
       // the same driving in the other cars in stock, for a comparison
@@ -67,15 +69,18 @@
       const used = r.litres ? t("cost.litres", { n: num(r.litres) }) : r.m3 ? t("cost.m3", { n: num(r.m3) }) : "";
       const kwh = r.kwh ? t("cost.kwh", { n: num(r.kwh) }) : "";
       out.replaceChildren(
-        el("p", { class: "cost-total" }, el("strong", { text: money(r.total) }), el("span", { text: " " + t("cost.perMonth") })),
+        el("p", { class: "cost-label-top", text: t("cost.estimate") }),
+        el("p", { class: "cost-total" }, totalNode, el("span", { text: " " + t("cost.perMonth") })),
         el("p", { class: "cost-sub", text: t("cost.sub", { km: km(Math.round(r.kmMonth)), perKm: t("money.som", { n: num(Math.round(r.perKm)) }), year: money(r.year) }) }),
         el("ul", { class: "cost-parts" }, parts.map(([k, v]) => el("li", null,
           el("span", { class: "cost-label", text: t("cost." + k) }),
           el("span", { class: "cost-bar", "aria-hidden": "true" }, el("span", { style: `width:${r.total ? Math.round((100 * v) / r.total) : 0}%` })),
           el("span", { class: "cost-value", text: money(v) })))),
         el("p", { class: "hint", text: [used, kwh].filter(Boolean).join(" + ") }),
-        m.fuel === "phev" && el("p", { class: "hint", text: t("cost.eShare", { pct: Math.round(r.eShare * 100) }) }),
+        m.fuel === "phev" ? el("p", { class: "hint", text: t("cost.eShare", { pct: Math.round(r.eShare * 100) }) }) : "", // (replaceChildren would print "false")
         el("p", { class: "cost-compare", text: Math.abs(diff) < 50000 ? t("cost.average") : t(diff < 0 ? "cost.less" : "cost.more", { sum: money(Math.abs(diff)) }) }));
+      Site.tween(totalNode, r.total, money);
+      renderOwn(state);
       Store.setCostPrefs({ kmWeek: state.kmWeek, homeCharging: state.homeCharging, kasko: state.kasko,
         prices: Object.fromEntries(Object.entries(state.prices).filter(([k, v]) => typeof v === "number" && v !== DATA.PRICES[k])) });
     }
@@ -100,6 +105,31 @@
         out));
     update();
     return tool;
+  }
+
+  /* ---------- MOTORA ownership cost: loan + running, follows the calculator ---------- */
+  const ownNodes = {};
+  function ownPanel() {
+    ownNodes.total = el("strong", { class: "num" });
+    ownNodes.loan = el("dd", { class: "num" });
+    ownNodes.running = el("dd", { class: "num" });
+    ownNodes.km = el("p", { class: "hint" });
+    return el("section", { class: "own-panel", "aria-labelledby": "ownTitle" },
+      el("h2", { id: "ownTitle", class: "own-title", text: t("own.title") }),
+      el("p", { class: "own-big", "aria-live": "polite" }, ownNodes.total, el("span", { text: " " + t("own.month") })),
+      el("dl", { class: "own-rows" },
+        el("div", null, el("dt", { text: t("own.loan", { down: 30, months: 36, rate: DATA.FINANCE.rate }) }), ownNodes.loan),
+        el("div", null, el("dt", null, el("a", { href: "#costTitle", text: t("own.running") })), ownNodes.running)),
+      ownNodes.km,
+      el("p", { class: "own-disclaimer", text: t("own.disclaimer") }));
+  }
+  function renderOwn(state) {
+    if (!ownNodes.total) return;
+    const o = Calc.ownership(c, state);
+    Site.tween(ownNodes.total, o.total, Site.mlnShort);
+    ownNodes.loan.textContent = money(o.loan);
+    ownNodes.running.textContent = money(o.running);
+    ownNodes.km.textContent = t("own.km", { km: km(state.kmWeek) });
   }
 
   /* ---------- specs ---------- */
@@ -138,6 +168,11 @@
       return;
     }
     const monthly = Site.fromMonthly(c);
+    $("crumbs").replaceChildren(el("ol", null,
+      el("li", null, el("a", { href: "index.html", text: t("page.home") })),
+      el("li", null, el("a", { href: "cars.html", text: t("page.cars") })),
+      el("li", null, el("span", { "aria-current": "page", text: `${Site.carTitle(c)} ${c.trim}` }))));
+    const own = ownPanel();
     $("view").replaceChildren(
       el("div", { class: "car-top" },
         gallery(),
@@ -145,11 +180,12 @@
           Site.badges(c),
           el("h1", null, Site.carTitle(c), el("span", { class: "car-trim", text: " " + c.trim })),
           el("p", { class: "car-line", text: Site.carLine(c) }),
-          el("p", { class: "car-price", text: mln(c.price) }),
+          el("p", { class: "car-price price", text: mln(c.price) }),
           el("p", { class: "car-monthly" }, t("car.monthly", { sum: money(monthly) }), " ", el("a", { href: "finance.html?car=" + c.id, text: t("car.toFinance") })),
           el("div", { class: "car-actions" },
             el("a", { class: "btn", href: "testdrive.html?car=" + c.id }, icon("calendar", 18), el("span", { text: t("car.testdrive") })),
             Site.saveButton(c, true), Site.compareButton(c, true)),
+          own,
           el("p", { class: "car-about", text: c.m.about[Site.lang()] }),
           el("p", { class: "hint" }, t("car.tradeHint"), " ", el("a", { href: "tradein.html", text: t("car.toTrade") })))),
       costTool(),
