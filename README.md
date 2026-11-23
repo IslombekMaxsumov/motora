@@ -1,5 +1,7 @@
 # MOTORA: car dealership
 
+**Live:** https://islombekmaxsumov.github.io/motora/
+
 Site #7 of my 10-websites course project: a car showroom selling cars that are sold in Uzbekistan (Chevrolet, BYD, Kia, Chery), in Uzbek, Russian and English. Plain HTML, CSS and JavaScript: no framework, no build step, no backend. Everything you save stays in your browser.
 
 The rule for this site: the tools must do real work, not just "click this, click that".
