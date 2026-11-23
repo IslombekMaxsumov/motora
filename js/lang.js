@@ -33,7 +33,7 @@ window.I18N = {
     "compare.add": "Compare {name}", "compare.remove": "Remove {name} from comparison", "compare.compare": "Compare", "compare.inList": "Comparing",
     "compare.added": "{name} added to the comparison", "compare.removed": "{name} removed from the comparison",
     "compare.full": "You can compare up to {n} cars. Remove one first.", "compare.open": "Open",
-    "photo.none": "No photo yet: {name}", "photo.view.front": "Front", "photo.view.side": "Side", "photo.view.interior": "Interior", "photo.view.other": "Photo",
+    "photo.none": "No photo yet: {name}", "photo.view.front": "Front", "photo.view.side": "Side", "photo.view.interior": "Interior", "photo.view.other": "Photo", "photo.view.rear": "Rear", "photo.credit": "Photo:",
 
     "home.title": "Find the car that fits your life, not just your budget.",
     "home.intro": "New and used cars in Tashkent, Samarkand and Fergana, with honest numbers: what it costs to run, what you pay each month and what your old car is worth.",
@@ -251,7 +251,7 @@ window.I18N = {
     "compare.add": "Сравнить {name}", "compare.remove": "Убрать {name} из сравнения", "compare.compare": "Сравнить", "compare.inList": "В сравнении",
     "compare.added": "{name} добавлен к сравнению", "compare.removed": "{name} убран из сравнения",
     "compare.full": "Можно сравнить до {n} машин. Сначала уберите одну.", "compare.open": "Открыть",
-    "photo.none": "Фото пока нет: {name}", "photo.view.front": "Спереди", "photo.view.side": "Сбоку", "photo.view.interior": "Салон", "photo.view.other": "Фото",
+    "photo.none": "Фото пока нет: {name}", "photo.view.front": "Спереди", "photo.view.side": "Сбоку", "photo.view.interior": "Салон", "photo.view.other": "Фото", "photo.view.rear": "Сзади", "photo.credit": "Фото:",
 
     "home.title": "Машина, которая подходит вашей жизни, а не только бюджету.",
     "home.intro": "Новые и подержанные автомобили в Ташкенте, Самарканде и Фергане с честными цифрами: сколько стоит содержание, сколько платить в месяц и сколько стоит ваша старая машина.",
@@ -470,7 +470,7 @@ window.I18N = {
     "compare.add": "{name}ni solishtirish", "compare.remove": "{name}ni solishtirishdan olib tashlash", "compare.compare": "Solishtirish", "compare.inList": "Solishtirilmoqda",
     "compare.added": "{name} solishtirishga qo'shildi", "compare.removed": "{name} solishtirishdan olib tashlandi",
     "compare.full": "{n} tagacha mashinani solishtirish mumkin. Avval bittasini olib tashlang.", "compare.open": "Ochish",
-    "photo.none": "Hozircha surat yo'q: {name}", "photo.view.front": "Old tomondan", "photo.view.side": "Yon tomondan", "photo.view.interior": "Salon", "photo.view.other": "Surat",
+    "photo.none": "Hozircha surat yo'q: {name}", "photo.view.front": "Old tomondan", "photo.view.side": "Yon tomondan", "photo.view.interior": "Salon", "photo.view.other": "Surat", "photo.view.rear": "Orqa tomondan", "photo.credit": "Surat:",
 
     "home.title": "Faqat byudjetingizga emas, hayotingizga mos mashinani toping.",
     "home.intro": "Toshkent, Samarqand va Farg'onada yangi va ishlatilgan mashinalar, halol raqamlar bilan: saqlash qancha turadi, oyiga qancha to'laysiz va eski mashinangiz qancha turadi.",

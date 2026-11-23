@@ -12,10 +12,13 @@
 
   /* ---------- gallery ---------- */
   function gallery() {
-    const count = Math.max(VIEWS.length, Site.photos(c).length);
+    // real photos when the model has them (some have only 2), else the 3 name plates
+    const list = Site.photos(c);
+    const count = list.length || VIEWS.length;
+    const viewOf = (i) => (list[i] ? list[i].view : VIEWS[i]) || "other";
     const main = el("div", { class: "gallery-main", tabindex: "0", role: "group", "aria-roledescription": t("gallery.role"),
       "aria-label": t("gallery.label", { n: shown + 1, count }) },
-      Site.photo(c, { index: shown, view: VIEWS[shown], eager: true, sizes: "(min-width: 960px) 640px, 100vw" }));
+      Site.photo(c, { index: shown, view: viewOf(shown), eager: true, sizes: "(min-width: 960px) 640px, 100vw" }));
     const go = (i) => { shown = (i + count) % count; redrawGallery(); };
     main.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") { e.preventDefault(); go(shown + 1); }
@@ -31,18 +34,34 @@
       if (Math.abs(dx) > 40) go(shown + (dx < 0 ? 1 : -1));
     });
     return el("section", { class: "gallery", id: "gallery", "aria-label": t("gallery.title") },
-      main,
-      el("button", { type: "button", class: "icon-btn gallery-prev", "aria-label": t("gallery.prev"), onclick: () => go(shown - 1) }, icon("left", 20)),
-      el("button", { type: "button", class: "icon-btn gallery-next", "aria-label": t("gallery.next"), onclick: () => go(shown + 1) }, icon("right", 20)),
+      el("div", { class: "gallery-stage" },
+        main,
+        el("button", { type: "button", class: "icon-btn gallery-prev", "aria-label": t("gallery.prev"), onclick: () => go(shown - 1) }, icon("left", 20)),
+        el("button", { type: "button", class: "icon-btn gallery-next", "aria-label": t("gallery.next"), onclick: () => go(shown + 1) }, icon("right", 20))),
       el("div", { class: "gallery-thumbs" }, Array.from({ length: count }, (_, i) =>
-        el("button", { type: "button", class: "thumb", "aria-pressed": String(i === shown), "aria-label": t("gallery.show", { view: t("photo.view." + (VIEWS[i] || "other")) }), onclick: () => go(i) },
-          Site.photo(c, { index: i, view: VIEWS[i], sizes: "96px" })))));
+        el("button", { type: "button", class: "thumb", "aria-pressed": String(i === shown), "aria-label": t("gallery.show", { view: t("photo.view." + viewOf(i)) }), onclick: () => go(i) },
+          Site.photo(c, { index: i, view: viewOf(i), sizes: "112px" })))),
+      list[shown] ? credit(list[shown]) : "");
+  }
+  // CC licences need the author, the licence and a link (Wikimedia Commons)
+  function credit(p) {
+    const cr = p.credit;
+    return el("p", { class: "photo-credit" },
+      t("photo.credit") + " ",
+      el("a", { href: cr.page, rel: "noopener", target: "_blank" }, cr.author),
+      cr.license ? ", " : "",
+      cr.license && (cr.licenseUrl ? el("a", { href: cr.licenseUrl, rel: "noopener license", target: "_blank" }, cr.license) : cr.license),
+      ", Wikimedia Commons");
   }
   function redrawGallery() {
     const old = $("gallery");
-    const hadFocus = old.contains(document.activeElement) && document.activeElement.classList.contains("gallery-main");
+    // keep keyboard focus on the same control (main photo, arrow or thumbnail) after redrawing
+    const a = document.activeElement;
+    const sel = !old.contains(a) ? null
+      : a.classList.contains("thumb") ? `.thumb:nth-child(${[...a.parentNode.children].indexOf(a) + 1})`
+      : ["gallery-main", "gallery-prev", "gallery-next"].map((k) => "." + k).find((k) => a.matches(k));
     old.replaceWith(gallery());
-    if (hadFocus) document.querySelector(".gallery-main").focus();
+    if (sel) document.querySelector("#gallery " + sel).focus();
   }
 
   /* ---------- running costs ---------- */

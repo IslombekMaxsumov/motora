@@ -1,0 +1,132 @@
+// Downloads the car photos from Wikimedia Commons and writes js/photos.js.
+// Run: node tools/commons.mjs   (needs Windows PowerShell for resizing)
+//
+// The photos were picked by eye on 2026-11-23 from contact sheets of every
+// Commons photo of each model: daylight, mostly white or silver cars, the
+// right generation for the cars sold in Uzbekistan. Every photo is free to
+// use with credit (CC BY, CC BY-SA, CC0 or public domain); the credit and
+// licence are shown under the photo on the car page.
+//
+// Missing (no usable free photo found): interiors of Cobalt, Onix, Gentra and
+// Tiggo 7 Pro, and a side view of the Sonet. Those galleries show fewer photos.
+import { writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+
+// [model, view, Commons file name, object-position (optional)]
+const PICKS = [
+  ["damas", "front", "Chevrolet Damas Deluxe in Bukhara, front right.jpg"],
+  ["damas", "side", "Chevrolet Damas. Islom sivilizatsiyasi markazi.jpg"],
+  ["damas", "interior", "Daewoo Damas interior.png"],
+  ["cobalt", "front", "Chevrolet Cobalt 1.8 LTZ 2017 (38346300391).jpg"],
+  ["cobalt", "rear", "Chevrolet Cobalt, Toshkent.jpg"],
+  ["onix", "front", "Chevrolet Onix 006.jpg"],
+  ["onix", "side", "2022 Chevrolet Onix Plus 1.0 Premier (side).jpg"],
+  ["gentra", "front", "Daewoo gentra 2013 (2).JPG"],
+  ["gentra", "rear", "Daewoo gentra 2013 (1).JPG"],
+  ["tracker", "front", "2022 Chevrolet Tracker 1.2 Turbo LS.jpg"],
+  ["tracker", "side", "Chevy Tracker (52644129378).jpg"],
+  ["tracker", "interior", "Chevrolet Tracker 2021 (interior).png"],
+  ["malibu", "front", "0 Chevrolet Malibu (E2XX) 10.jpg"],
+  ["malibu", "side", "0 Chevrolet Malibu (E2XX) 15.jpg"],
+  ["malibu", "interior", "Chevrolet Malibu 2017 Interior.jpg"],
+  ["equinox", "front", "2022 Chevrolet Equinox LT, front right, 08-07-2024.jpg"],
+  ["equinox", "rear", "2018 Chevrolet Equinox AWD from Oregon.jpg"],
+  ["equinox", "interior", "2023 Chevrolet Equinox interior.jpg"],
+  ["tahoe", "front", "2022 Chevrolet Tahoe RST, front 3.7.22.jpg"],
+  ["tahoe", "side", "2021 Chevy Tahoe.jpg"],
+  ["tahoe", "interior", "MIAS 2024 - 2024 Chevrolet Tahoe 5.3 High Country V8 interior.jpg"],
+  ["chazor", "front", "BYD Qin Plus (秦Plus) DM-i facelift 01 China 2025-03-29.jpg"],
+  ["chazor", "side", "BYD Qin Plus DM-i IMG001.jpg"],
+  ["chazor", "interior", "BYD Qin Plus DM-i facelift 003.jpg"],
+  ["songplus", "front", "2022 BYD Song Plus DM-i, front 8.3.23.jpg"],
+  ["songplus", "side", "BYD SONG PLUS DM-I LEFT SIDE VIEW.jpg"],
+  ["songplus", "interior", "BYD song plus front interior.jpg"],
+  ["han", "front", "BYD Han EV 012.jpg"],
+  ["han", "side", "BYD Han EV 20210214.jpg"],
+  ["han", "interior", "2024 BYD Han EV interior.jpg"],
+  ["sonet", "front", "2024 Kia Sonet Zenith (Colombia) front view.png"],
+  ["sonet", "interior", null], // filled below: the long GIIAS 2026 file name
+  ["k5", "front", "00 kia k5 3 3.jpg"],
+  ["k5", "rear", "00 kia k5 3 5.jpg"],
+  ["k5", "interior", "Kia K5 Hybrid DL3 HEV Martian Brown (2).jpg"],
+  ["sportage", "front", "2023 Kia Sportage (NQ5) in White, front left.jpg"],
+  ["sportage", "side", "00 Kia Sportage (NQ5) 1.jpg"],
+  ["sportage", "interior", "Kia Sportage NQ5 Black Interior (3).jpg"],
+  ["tiggo7", "front", "2024 Chery Tiggo 7 Pro, Pakuwon Trade Center, West Surabaya.jpg"],
+  ["tiggo7", "side", "Moscow, Chery Tiggo 7 promax white, Sept 2025 03.jpg"],
+];
+const SONET_INTERIOR_PREFIX = "Front row of Kia New Sonet as seen from the right during GIIAS 2026";
+
+const NAMES = { damas: "Chevrolet Damas", cobalt: "Chevrolet Cobalt", onix: "Chevrolet Onix", gentra: "Chevrolet Gentra", tracker: "Chevrolet Tracker", malibu: "Chevrolet Malibu", equinox: "Chevrolet Equinox", tahoe: "Chevrolet Tahoe", chazor: "BYD Chazor", songplus: "BYD Song Plus", han: "BYD Han EV", sonet: "Kia Sonet", k5: "Kia K5", sportage: "Kia Sportage", tiggo7: "Chery Tiggo 7 Pro" };
+const ALT = {
+  front: { en: "{n}, front three-quarter view", ru: "{n}, вид спереди сбоку", uz: "{n}, old va yon tomondan ko'rinish" },
+  side: { en: "{n}, side view", ru: "{n}, вид сбоку", uz: "{n}, yon tomondan ko'rinish" },
+  rear: { en: "{n}, rear three-quarter view", ru: "{n}, вид сзади сбоку", uz: "{n}, orqa va yon tomondan ko'rinish" },
+  interior: { en: "{n}, interior: dashboard and front seats", ru: "{n}, салон: передняя панель и передние сиденья", uz: "{n}, salon: old panel va old o'rindiqlar" },
+};
+const WIDTHS = [640, 1024, 1600];
+const UA = { "User-Agent": "MotoraDemoPhotoPicker/1.0 (course project)" };
+const root = fileURLToPath(new URL("..", import.meta.url));
+const dir = root + "assets/photos/";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function api(params) {
+  const u = "https://commons.wikimedia.org/w/api.php?" + new URLSearchParams({ format: "json", ...params });
+  for (let i = 0; i < 6; i++) {
+    await sleep(1200);
+    const s = await (await fetch(u, { headers: UA })).text();
+    if (s.startsWith("{")) return JSON.parse(s);
+    await sleep(5000 * (i + 1));
+  }
+  throw new Error("Commons API failed");
+}
+// author names that come out messy from the Commons HTML
+const AUTHOR = { "Chevrolet Damas Deluxe in Bukhara, front right.jpg": "Ilya Plekhanov, edited by Mr.choppers" };
+const strip = (html) => (html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+
+mkdirSync(dir, { recursive: true });
+if (!PICKS.find((p) => p[0] === "sonet" && p[1] === "interior")[2]) {
+  const s = await api({ action: "query", list: "search", srnamespace: 6, srsearch: SONET_INTERIOR_PREFIX, srlimit: 5 });
+  PICKS.find((p) => p[0] === "sonet" && p[1] === "interior")[2] = s.query.search[0].title.replace(/^File:/, "");
+}
+
+const PHOTOS = {};
+for (const [model, view, file, pos] of PICKS) {
+  const j = await api({ action: "query", titles: "File:" + file, prop: "imageinfo", iiprop: "url|size|extmetadata", iiurlwidth: 1600, iiextmetadatafilter: "Artist|LicenseShortName|LicenseUrl" });
+  const page = Object.values(j.query.pages)[0];
+  const info = page.imageinfo[0];
+  const m = info.extmetadata;
+  const base = `${model}-${view}`;
+  const src = dir + base + "-src";
+  // always a Commons thumbnail: the original files are rate-limited (429)
+  const tw = info.width > 1920 ? 1920 : 1280; // Commons only serves standard thumbnail widths
+  if (!existsSync(dir + `${base}-640.jpg`)) {
+    const orig = info.url.split("?")[0], name = orig.split("/").pop();
+    const url = orig.replace("upload.wikimedia.org/wikipedia/commons/", "thumb.wikimedia.org/wikipedia/commons/thumb/") + `/${tw}px-${name}`;
+    let r;
+    for (let k = 0; k < 5; k++) {
+      r = await fetch(url, { headers: UA });
+      if (r.ok) break;
+      await sleep(10000 * (k + 1)); // Commons asks bots to slow down (429)
+    }
+    if (!r.ok) throw new Error(`download failed (${r.status}): ${file}`);
+    writeFileSync(src, Buffer.from(await r.arrayBuffer()));
+    execFileSync("powershell", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", root + "tools/resize.ps1", "-src", src, "-base", dir + base, "-widths", WIDTHS.join(",")], { stdio: "inherit" });
+  }
+  const alt = {};
+  for (const l of ["en", "ru", "uz"]) alt[l] = ALT[view][l].replace("{n}", NAMES[model]);
+  (PHOTOS[model] ||= []).push({
+    view,
+    sizes: WIDTHS.filter((w) => w <= tw || w === WIDTHS[0]).map((w) => [w, `assets/photos/${base}-${w}.jpg`]),
+    alt,
+    ...(pos ? { pos } : {}),
+    credit: { author: AUTHOR[file] || strip(m.Artist?.value) || "Unknown", license: m.LicenseShortName?.value || "", licenseUrl: m.LicenseUrl?.value || "", page: info.descriptionurl },
+  });
+  console.log(model, view, "ok");
+}
+
+writeFileSync(root + "js/photos.js",
+  "/* Car photos from Wikimedia Commons, written by tools/commons.mjs.\n   PHOTOS[model] = [{ view, sizes: [[width, file]…], alt: {en, ru, uz}, credit }] */\n" +
+  "window.PHOTOS = " + JSON.stringify(PHOTOS, null, 1) + ";\n");
+console.log("wrote js/photos.js");

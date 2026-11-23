@@ -187,9 +187,12 @@ body.no-scroll { overflow: hidden; }
 .gallery { position: relative; display: grid; gap: var(--s2); min-width: 0; }
 .gallery-main { border-radius: var(--r-panel); overflow: hidden; touch-action: pan-y; }
 .gallery-main .photo { aspect-ratio: 16 / 9; }
-.gallery-prev, .gallery-next { position: absolute; top: calc(50% - 44px); border-color: transparent; background: color-mix(in srgb, var(--surface) 90%, transparent); }
+.gallery-stage { position: relative; }
+.gallery-prev, .gallery-next { position: absolute; top: calc(50% - 22px); border-color: transparent; background: color-mix(in srgb, var(--surface) 90%, transparent); }
 .gallery-prev { left: 10px; } .gallery-next { right: 10px; }
 .gallery-thumbs { display: flex; gap: var(--s2); }
+.photo-credit { margin: 0; font-size: 0.75rem; color: var(--ink-2); overflow-wrap: anywhere; }
+.photo-credit a { color: inherit; }
 .thumb { flex: 1 1 0; min-width: 0; max-width: 112px; padding: 0; border: 2px solid transparent; border-radius: var(--r-ctl); overflow: hidden; background: none; }
 .thumb[aria-pressed="true"] { border-color: var(--ink); }
 .thumb .photo-fallback-name { font-size: 0.75rem; } .thumb .photo-fallback-brand { display: none; }

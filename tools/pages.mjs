@@ -31,6 +31,7 @@ const head = (page) => `<!doctype html>
   <script defer src="js/calc.js"></script>
   <script defer src="js/store.js"></script>
   <script defer src="js/logo.js"></script>
+  <script defer src="js/photos.js"></script>
   <script defer src="js/layout.js"></script>
   <script defer src="js/pages/${page}.js"></script>
 </head>
