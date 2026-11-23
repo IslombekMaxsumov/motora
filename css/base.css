@@ -110,6 +110,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { padding: 0; }
 img, svg { display: block; }
+[hidden] { display: none !important; } /* class display rules (e.g. .empty { display: grid }) must not undo hidden */
 a { color: var(--accent-text); text-underline-offset: 3px; }
 a:hover { color: var(--ink); }
 /* every number that people compare lines up */

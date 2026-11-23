@@ -35,10 +35,10 @@ The rule for this site: the tools must do real work, not just "click this, click
 - Motion: finder results slide to their new places and score meters grow; the big totals count to their new value; save and compare give a small pop. All of it is off with "reduce motion".
 
 ## Photos
-- **Official photos for 5 Chevrolets** (Tracker, Onix, Cobalt, Damas, Tahoe) from [chevrolet.uz](https://chevrolet.uz), the site of UzAuto Motors, which builds and sells Chevrolet in Uzbekistan. Its footer allows reuse with a link ("Sayt materiallaridan foydalanganda havolani ko'rsatishingiz kerak": when using site materials, show a link), so the credit under each photo links to the model page.
-- **Wikimedia Commons for the other 10 models**, picked by eye for one look (mostly white or silver cars in daylight, the right generation). Each is CC BY, CC BY-SA, CC0 or public domain; the author and licence are shown under the photo.
-- Each model uses one source only. Kia (editorial use only), BYD (written consent needed) and Chery (no published terms) do not allow reuse, and chevrolet.uz no longer shows the Gentra, Malibu or petrol Equinox.
-- No free interior photo was found for the Gentra and Tiggo 7 Pro, and no side view of the Sonet: those cars have 2 photos.
+- **Official photos for all 7 Chevrolets** (Tracker, Onix, Cobalt, Damas, Tahoe, Gentra, Malibu) from [chevrolet.uz](https://chevrolet.uz), the site of UzAuto Motors, which builds and sells Chevrolet in Uzbekistan. Its footer allows reuse with a link ("Sayt materiallaridan foydalanganda havolani ko'rsatishingiz kerak": when using site materials, show a link), so the credit under each photo links to the model page. The Gentra (sold as Lacetti since 2023) and the Malibu XL are no longer on the site, so their official galleries come from the Internet Archive copy of chevrolet.uz, and the credit links to that copy.
+- **Wikimedia Commons for the other 8 models** (BYD, Kia, Chery, Equinox), picked by eye for one look (mostly white or silver cars in daylight, the right generation). Each is CC BY, CC BY-SA, CC0 or public domain; the author and licence are shown under the photo.
+- Each model uses one source only. Kia (editorial use only), BYD (written consent needed) and Chery (no published terms) do not allow reuse. The petrol Equinox has no official chevrolet.uz gallery.
+- No free interior photo was found for the Tiggo 7 Pro, and no side view of the Sonet: those cars have 2 photos.
 - `node tools/commons.mjs` downloads and resizes everything (Windows PowerShell does the resizing) and writes `js/photos.js`.
 
 ## Tests

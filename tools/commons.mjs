@@ -3,12 +3,13 @@
 //
 // Two sources, never mixed for the same model:
 // 1. OFFICIAL: Chevrolet Uzbekistan (chevrolet.uz, run by UzAuto Motors) for
-//    the five Chevrolets it still sells: Tracker, Onix, Cobalt, Damas, Tahoe.
+//    the seven Chevrolets: Tracker, Onix, Cobalt, Damas, Tahoe, and from the
+//    archived copy of the same site Gentra (Lacetti) and Malibu XL.
 //    Its footer allows reuse with a link: "Sayt materiallaridan foydalanganda
 //    havolani ko'rsatishingiz kerak" (when using site materials, show a link),
 //    so every photo credit links to the model page. Kia (editorial use only),
 //    BYD (written consent needed) and Chery (no terms) do not allow it.
-// 2. PICKS: Wikimedia Commons for the other ten models.
+// 2. PICKS: Wikimedia Commons for the other eight models.
 //
 // The photos were picked by eye on 2026-11-23 from contact sheets of every
 // Commons photo of each model: daylight, mostly white or silver cars, the
@@ -16,19 +17,14 @@
 // use with credit (CC BY, CC BY-SA, CC0 or public domain); the credit and
 // licence are shown under the photo on the car page.
 //
-// Missing (no usable free photo found): interiors of Gentra and Tiggo 7 Pro,
+// Missing (no usable free photo found): interior of the Tiggo 7 Pro,
 // and a side view of the Sonet. Those galleries show fewer photos.
-import { writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { writeFileSync, mkdirSync, existsSync, unlinkSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 // [model, view, Commons file name, object-position (optional)]
 const PICKS = [
-  ["gentra", "front", "Daewoo gentra 2013 (2).JPG"],
-  ["gentra", "rear", "Daewoo gentra 2013 (1).JPG"],
-  ["malibu", "front", "0 Chevrolet Malibu (E2XX) 10.jpg"],
-  ["malibu", "side", "0 Chevrolet Malibu (E2XX) 15.jpg"],
-  ["malibu", "interior", "Chevrolet Malibu 2017 Interior.jpg"],
   ["equinox", "front", "2022 Chevrolet Equinox LT, front right, 08-07-2024.jpg"],
   ["equinox", "rear", "2018 Chevrolet Equinox AWD from Oregon.jpg"],
   ["equinox", "interior", "2023 Chevrolet Equinox interior.jpg"],
@@ -61,9 +57,18 @@ const OFFICIAL = [
   ["onix", "front", "onix/big/exterior/03.jpg", "https://chevrolet.uz/onix"],
   ["onix", "side", "onix/big/exterior/07.jpg", "https://chevrolet.uz/onix"],
   ["onix", "interior", "onix/big/interior/03.jpg", "https://chevrolet.uz/onix"],
-  ["cobalt", "front", "cobalt2025/gallery/big/exterior/6.jpg", "https://chevrolet.uz/new/cobalt"],
-  ["cobalt", "rear", "cobalt2025/gallery/big/exterior/7.jpg", "https://chevrolet.uz/new/cobalt"],
-  ["cobalt", "interior", "cobalt2025/gallery/big/interior/2.jpg", "https://chevrolet.uz/new/cobalt"],
+  // Cobalt: the 1903 px launch photos (Tashkent City, Bukhara) instead of the red and blue gallery shots
+  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/main-event.jpg", "https://chevrolet.uz/new/cobalt", "45% 60%"],
+  ["cobalt", "front", "https://web.archive.org/web/2025id_/https://chevrolet.uz/assets/images/cobalt/index.jpg", "https://chevrolet.uz/new/cobalt"],
+  ["cobalt", "interior", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/1.jpg", "https://chevrolet.uz/new/cobalt"],
+  // Gentra (sold as Lacetti since 2023) and Malibu XL are gone from chevrolet.uz; their
+  // official galleries are taken from the Internet Archive copy of the same site
+  ["gentra", "front", "https://web.archive.org/web/20260314203544id_/https://chevrolet.uz/assets/images/lacetti/exterior/1.jpg", "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti"],
+  ["gentra", "side", "https://web.archive.org/web/20260314203544id_/https://chevrolet.uz/assets/images/lacetti/big/exterior/12.jpg", "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti"],
+  ["gentra", "interior", "https://web.archive.org/web/20260314203544id_/https://chevrolet.uz/assets/images/lacetti/big/interior/01.jpg", "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti"],
+  ["malibu", "front", "https://web.archive.org/web/2024id_/https://chevrolet.uz/assets/images/malibu-xl/exterior/one.jpg", "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl"],
+  ["malibu", "rear", "https://web.archive.org/web/2024id_/https://chevrolet.uz/assets/images/malibu-xl/big/exterior/3.jpg", "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl"],
+  ["malibu", "interior", "https://web.archive.org/web/2024id_/https://chevrolet.uz/assets/images/malibu-xl/interior/one.jpg", "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl"],
   ["damas", "front", "damas/big/exterior/02.jpg", "https://chevrolet.uz/damas", "18% 50%"],
   ["damas", "rear", "damas/big/exterior/03.jpg", "https://chevrolet.uz/damas"],
   ["damas", "interior", "damas/big/interior/01.jpg", "https://chevrolet.uz/damas"],
@@ -83,7 +88,7 @@ const ALT = {
   other: { en: "{n}, front three-quarter view from above", ru: "{n}, вид спереди сверху", uz: "{n}, old tomondan yuqoridan ko'rinish" },
 };
 const WIDTHS = [640, 1024, 1600];
-const OFFICIAL_WIDTHS = [640, 1024, 1520]; // the chevrolet.uz gallery photos are 1520 px wide
+const OFFICIAL_WIDTHS = [640, 1024, 1520, 1600]; // gallery photos are 1520 px wide, launch photos 1903 px
 const UA = { "User-Agent": "MotoraDemoPhotoPicker/1.0 (course project)" };
 const root = fileURLToPath(new URL("..", import.meta.url));
 const dir = root + "assets/photos/";
@@ -117,17 +122,22 @@ for (const [model, view, path, page, pos] of OFFICIAL) {
   const n = (PHOTOS[model] || []).length + 1;
   const base = `${model}-uz-${n}`;
   if (!existsSync(dir + `${base}-640.jpg`)) {
-    const r = await fetch("https://chevrolet.uz/assets/images/" + path, { headers: UA });
+    const url = path.startsWith("https://") ? path : "https://chevrolet.uz/assets/images/" + path;
+    let r;
+    for (let k = 0; k < 4; k++) { r = await fetch(url, { headers: UA }); if (r.ok) break; await sleep(5000); }
     if (!r.ok) throw new Error(`download failed (${r.status}): ${path}`);
     writeFileSync(dir + base + "-src", Buffer.from(await r.arrayBuffer()));
     execFileSync("powershell", ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", root + "tools/resize.ps1", "-src", dir + base + "-src", "-base", dir + base, "-widths", OFFICIAL_WIDTHS.join(",")], { stdio: "inherit" });
+    if (existsSync(dir + `${base}-1600.jpg`)) unlinkSync(dir + `${base}-1520.jpg`);
   }
   (PHOTOS[model] ||= []).push({
     view: { seats: "interior", other: "front" }[view] || view, // thumbnail label; the alt text keeps the detail
-    sizes: OFFICIAL_WIDTHS.map((w) => [w, `assets/photos/${base}-${w}.jpg`]),
+    // keep the sizes that exist (resize never upscales); 1520 is dropped when 1600 exists
+    sizes: OFFICIAL_WIDTHS.filter((w) => existsSync(dir + `${base}-${w}.jpg`) && !(w === 1520 && existsSync(dir + `${base}-1600.jpg`)))
+      .map((w) => [w, `assets/photos/${base}-${w}.jpg`]),
     alt: altFor(model, view),
     ...(pos ? { pos } : {}),
-    credit: { author: "Chevrolet Uzbekistan (UzAuto Motors)", license: "", licenseUrl: "", page, site: "chevrolet.uz" },
+    credit: { author: "Chevrolet Uzbekistan (UzAuto Motors)", license: "", licenseUrl: "", page, site: page.includes("web.archive.org") ? "chevrolet.uz (Internet Archive copy)" : "chevrolet.uz" },
   });
   console.log(model, view, "ok (official)");
 }

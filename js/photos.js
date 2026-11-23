@@ -192,8 +192,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-1-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-1-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-1-1600.jpg"
     ]
    ],
    "alt": {
@@ -201,6 +201,7 @@ window.PHOTOS = {
     "ru": "Chevrolet Cobalt, вид спереди сбоку",
     "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
    },
+   "pos": "45% 60%",
    "credit": {
     "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
@@ -210,7 +211,7 @@ window.PHOTOS = {
    }
   },
   {
-   "view": "rear",
+   "view": "front",
    "sizes": [
     [
      640,
@@ -221,14 +222,14 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-2-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-2-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-2-1600.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Cobalt, rear three-quarter view",
-    "ru": "Chevrolet Cobalt, вид сзади сбоку",
-    "uz": "Chevrolet Cobalt, orqa va yon tomondan ko'rinish"
+    "en": "Chevrolet Cobalt, front three-quarter view",
+    "ru": "Chevrolet Cobalt, вид спереди сбоку",
+    "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
    },
    "credit": {
     "author": "Chevrolet Uzbekistan (UzAuto Motors)",
@@ -250,8 +251,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-3-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-3-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-3-1600.jpg"
     ]
    ],
    "alt": {
@@ -265,6 +266,184 @@ window.PHOTOS = {
     "licenseUrl": "",
     "page": "https://chevrolet.uz/new/cobalt",
     "site": "chevrolet.uz"
+   }
+  }
+ ],
+ "gentra": [
+  {
+   "view": "front",
+   "sizes": [
+    [
+     640,
+     "assets/photos/gentra-uz-1-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/gentra-uz-1-1024.jpg"
+    ],
+    [
+     1600,
+     "assets/photos/gentra-uz-1-1600.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Gentra, front three-quarter view",
+    "ru": "Chevrolet Gentra, вид спереди сбоку",
+    "uz": "Chevrolet Gentra, old va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti",
+    "site": "chevrolet.uz (Internet Archive copy)"
+   }
+  },
+  {
+   "view": "side",
+   "sizes": [
+    [
+     640,
+     "assets/photos/gentra-uz-2-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/gentra-uz-2-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/gentra-uz-2-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Gentra, side view",
+    "ru": "Chevrolet Gentra, вид сбоку",
+    "uz": "Chevrolet Gentra, yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti",
+    "site": "chevrolet.uz (Internet Archive copy)"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/gentra-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/gentra-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/gentra-uz-3-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Gentra, interior: dashboard and front seats",
+    "ru": "Chevrolet Gentra, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Gentra, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti",
+    "site": "chevrolet.uz (Internet Archive copy)"
+   }
+  }
+ ],
+ "malibu": [
+  {
+   "view": "front",
+   "sizes": [
+    [
+     640,
+     "assets/photos/malibu-uz-1-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/malibu-uz-1-1024.jpg"
+    ],
+    [
+     1600,
+     "assets/photos/malibu-uz-1-1600.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Malibu, front three-quarter view",
+    "ru": "Chevrolet Malibu, вид спереди сбоку",
+    "uz": "Chevrolet Malibu, old va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl",
+    "site": "chevrolet.uz (Internet Archive copy)"
+   }
+  },
+  {
+   "view": "rear",
+   "sizes": [
+    [
+     640,
+     "assets/photos/malibu-uz-2-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/malibu-uz-2-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/malibu-uz-2-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Malibu, rear three-quarter view",
+    "ru": "Chevrolet Malibu, вид сзади сбоку",
+    "uz": "Chevrolet Malibu, orqa va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl",
+    "site": "chevrolet.uz (Internet Archive copy)"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/malibu-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/malibu-uz-3-1024.jpg"
+    ],
+    [
+     1600,
+     "assets/photos/malibu-uz-3-1600.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Malibu, interior: dashboard and front seats",
+    "ru": "Chevrolet Malibu, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Malibu, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://web.archive.org/web/2023/https://chevrolet.uz/malibu-xl",
+    "site": "chevrolet.uz (Internet Archive copy)"
    }
   }
  ],
@@ -444,155 +623,6 @@ window.PHOTOS = {
     "licenseUrl": "",
     "page": "https://chevrolet.uz/2025/tahoe",
     "site": "chevrolet.uz"
-   }
-  }
- ],
- "gentra": [
-  {
-   "view": "front",
-   "sizes": [
-    [
-     640,
-     "assets/photos/gentra-front-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/gentra-front-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/gentra-front-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Gentra, front three-quarter view",
-    "ru": "Chevrolet Gentra, вид спереди сбоку",
-    "uz": "Chevrolet Gentra, old va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Timuraxunov",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(2).JPG",
-    "site": "Wikimedia Commons"
-   }
-  },
-  {
-   "view": "rear",
-   "sizes": [
-    [
-     640,
-     "assets/photos/gentra-rear-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/gentra-rear-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/gentra-rear-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Gentra, rear three-quarter view",
-    "ru": "Chevrolet Gentra, вид сзади сбоку",
-    "uz": "Chevrolet Gentra, orqa va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Timuraxunov",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(1).JPG",
-    "site": "Wikimedia Commons"
-   }
-  }
- ],
- "malibu": [
-  {
-   "view": "front",
-   "sizes": [
-    [
-     640,
-     "assets/photos/malibu-front-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/malibu-front-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/malibu-front-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Malibu, front three-quarter view",
-    "ru": "Chevrolet Malibu, вид спереди сбоку",
-    "uz": "Chevrolet Malibu, old va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Benespit",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_10.jpg",
-    "site": "Wikimedia Commons"
-   }
-  },
-  {
-   "view": "side",
-   "sizes": [
-    [
-     640,
-     "assets/photos/malibu-side-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/malibu-side-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/malibu-side-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Malibu, side view",
-    "ru": "Chevrolet Malibu, вид сбоку",
-    "uz": "Chevrolet Malibu, yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Benespit",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_15.jpg",
-    "site": "Wikimedia Commons"
-   }
-  },
-  {
-   "view": "interior",
-   "sizes": [
-    [
-     640,
-     "assets/photos/malibu-interior-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/malibu-interior-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/malibu-interior-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Malibu, interior: dashboard and front seats",
-    "ru": "Chevrolet Malibu, салон: передняя панель и передние сиденья",
-    "uz": "Chevrolet Malibu, salon: old panel va old o'rindiqlar"
-   },
-   "credit": {
-    "author": "Alistair Fernandez",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Malibu_2017_Interior.jpg",
-    "site": "Wikimedia Commons"
    }
   }
  ],
