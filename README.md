@@ -32,13 +32,14 @@ The rule for this site: the tools must do real work, not just "click this, click
 - **Signature: MOTORA ownership cost** = an estimated loan (30% down, 36 months) + running costs for your km a week (`Calc.ownership`). It is on every car card, the car page (it follows the running-cost calculator), the finder and the comparison, always marked as an estimate, not a bank offer.
 - **Open layout (second pass, 2026-11-23):** sections are separated by space, type and thin dividers instead of bordered boxes. Only what you act on or read as a result has a surface: form fields, the quick search, the main result of each tool (payment, trade-in value, booking), and the ownership panel. Car cards are a photo with open text below.
 - **Dark mode:** its own neutral charcoal palette (#141414 page, #1C1C1C bars and results, #252525 controls, brass accent), no green tint; muted grey #77746F is used only for decoration because it is under 4.5:1 for text.
-- **Photos: why not the manufacturers own?** Kia press images are for editorial use only (dealers get theirs through their ad planners), BYD forbids reuse without written consent, and GM and Chery publish no reuse licence for their media sites. So the site keeps the Wikimedia Commons photos, which have clear free licences.
 - Motion: finder results slide to their new places and score meters grow; the big totals count to their new value; save and compare give a small pop. All of it is off with "reduce motion".
 
 ## Photos
-40 real photos from Wikimedia Commons (`assets/photos`, 640 / 1024 / 1600 px): a front three-quarter view of every model, plus a side or rear view and the interior where a free photo of the right generation exists. Picked by eye from every Commons photo of each model, mostly white or silver cars in daylight so they look like one set. Each photo is CC BY, CC BY-SA, CC0 or public domain; the author and licence are shown under the photo on the car page. `node tools/commons.mjs` downloads and resizes them (Windows PowerShell does the resizing) and writes `js/photos.js`.
-- No free interior photo found for the Cobalt, Onix, Gentra and Tiggo 7 Pro, and no side view of the Sonet: those cars have 2 photos instead of 3.
-- Cars without photos would show a neutral plate with the brand and model.
+- **Official photos for 5 Chevrolets** (Tracker, Onix, Cobalt, Damas, Tahoe) from [chevrolet.uz](https://chevrolet.uz), the site of UzAuto Motors, which builds and sells Chevrolet in Uzbekistan. Its footer allows reuse with a link ("Sayt materiallaridan foydalanganda havolani ko'rsatishingiz kerak": when using site materials, show a link), so the credit under each photo links to the model page.
+- **Wikimedia Commons for the other 10 models**, picked by eye for one look (mostly white or silver cars in daylight, the right generation). Each is CC BY, CC BY-SA, CC0 or public domain; the author and licence are shown under the photo.
+- Each model uses one source only. Kia (editorial use only), BYD (written consent needed) and Chery (no published terms) do not allow reuse, and chevrolet.uz no longer shows the Gentra, Malibu or petrol Equinox.
+- No free interior photo was found for the Gentra and Tiggo 7 Pro, and no side view of the Sonet: those cars have 2 photos.
+- `node tools/commons.mjs` downloads and resizes everything (Windows PowerShell does the resizing) and writes `js/photos.js`.
 
 ## Tests
 `node --test tests/calc.test.mjs`: 12 tests for the loan, lease, running costs, ownership cost, trade-in, finder, slots, phone and name checks, search, URL and comparison.

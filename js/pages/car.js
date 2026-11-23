@@ -43,15 +43,16 @@
           Site.photo(c, { index: i, view: viewOf(i), sizes: "112px" })))),
       list[shown] ? credit(list[shown]) : "");
   }
-  // CC licences need the author, the licence and a link (Wikimedia Commons)
+  // every photo links to its source: CC licences need author + licence + link,
+  // and chevrolet.uz asks for a link when its materials are used
   function credit(p) {
     const cr = p.credit;
     return el("p", { class: "photo-credit" },
       t("photo.credit") + " ",
       el("a", { href: cr.page, rel: "noopener", target: "_blank" }, cr.author),
       cr.license ? ", " : "",
-      cr.license && (cr.licenseUrl ? el("a", { href: cr.licenseUrl, rel: "noopener license", target: "_blank" }, cr.license) : cr.license),
-      ", Wikimedia Commons");
+      cr.license ? (cr.licenseUrl ? el("a", { href: cr.licenseUrl, rel: "noopener license", target: "_blank" }, cr.license) : cr.license) : "",
+      ", " + (cr.site || "Wikimedia Commons"));
   }
   function redrawGallery() {
     const old = $("gallery");

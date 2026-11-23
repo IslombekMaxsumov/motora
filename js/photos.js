@@ -1,57 +1,63 @@
-/* Car photos from Wikimedia Commons, written by tools/commons.mjs.
+/* Car photos (Chevrolet Uzbekistan and Wikimedia Commons), written by tools/commons.mjs.
    PHOTOS[model] = [{ view, sizes: [[width, file]…], alt: {en, ru, uz}, credit }] */
 window.PHOTOS = {
- "damas": [
+ "tracker": [
   {
    "view": "front",
    "sizes": [
     [
      640,
-     "assets/photos/damas-front-640.jpg"
+     "assets/photos/tracker-uz-1-640.jpg"
     ],
     [
      1024,
-     "assets/photos/damas-front-1024.jpg"
+     "assets/photos/tracker-uz-1-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/tracker-uz-1-1520.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Damas, front three-quarter view",
-    "ru": "Chevrolet Damas, вид спереди сбоку",
-    "uz": "Chevrolet Damas, old va yon tomondan ko'rinish"
+    "en": "Chevrolet Tracker, front three-quarter view",
+    "ru": "Chevrolet Tracker, вид спереди сбоку",
+    "uz": "Chevrolet Tracker, old va yon tomondan ko'rinish"
    },
    "credit": {
-    "author": "Ilya Plekhanov, edited by Mr.choppers",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Damas_Deluxe_in_Bukhara,_front_right.jpg"
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/tracker",
+    "site": "chevrolet.uz"
    }
   },
   {
-   "view": "side",
+   "view": "front",
    "sizes": [
     [
      640,
-     "assets/photos/damas-side-640.jpg"
+     "assets/photos/tracker-uz-2-640.jpg"
     ],
     [
      1024,
-     "assets/photos/damas-side-1024.jpg"
+     "assets/photos/tracker-uz-2-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/damas-side-1600.jpg"
+     1520,
+     "assets/photos/tracker-uz-2-1520.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Damas, side view",
-    "ru": "Chevrolet Damas, вид сбоку",
-    "uz": "Chevrolet Damas, yon tomondan ko'rinish"
+    "en": "Chevrolet Tracker, front three-quarter view from above",
+    "ru": "Chevrolet Tracker, вид спереди сверху",
+    "uz": "Chevrolet Tracker, old tomondan yuqoridan ko'rinish"
    },
    "credit": {
-    "author": "Jamshid Nurkulov",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Damas._Islom_sivilizatsiyasi_markazi.jpg"
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/tracker",
+    "site": "chevrolet.uz"
    }
   },
   {
@@ -59,81 +65,28 @@ window.PHOTOS = {
    "sizes": [
     [
      640,
-     "assets/photos/damas-interior-640.jpg"
+     "assets/photos/tracker-uz-3-640.jpg"
     ],
     [
      1024,
-     "assets/photos/damas-interior-1024.jpg"
+     "assets/photos/tracker-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/tracker-uz-3-1520.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Damas, interior: dashboard and front seats",
-    "ru": "Chevrolet Damas, салон: передняя панель и передние сиденья",
-    "uz": "Chevrolet Damas, salon: old panel va old o'rindiqlar"
+    "en": "Chevrolet Tracker, interior: dashboard and front seats",
+    "ru": "Chevrolet Tracker, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Tracker, salon: old panel va old o'rindiqlar"
    },
    "credit": {
-    "author": "Used Cars (@offusedcars)",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_Damas_interior.png"
-   }
-  }
- ],
- "cobalt": [
-  {
-   "view": "front",
-   "sizes": [
-    [
-     640,
-     "assets/photos/cobalt-front-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/cobalt-front-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/cobalt-front-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Cobalt, front three-quarter view",
-    "ru": "Chevrolet Cobalt, вид спереди сбоку",
-    "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "RL GNZLZ from Chile",
-    "license": "CC BY-SA 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Cobalt_1.8_LTZ_2017_(38346300391).jpg"
-   }
-  },
-  {
-   "view": "rear",
-   "sizes": [
-    [
-     640,
-     "assets/photos/cobalt-rear-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/cobalt-rear-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/cobalt-rear-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Cobalt, rear three-quarter view",
-    "ru": "Chevrolet Cobalt, вид сзади сбоку",
-    "uz": "Chevrolet Cobalt, orqa va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Raf24~commonswiki",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Cobalt,_Toshkent.jpg"
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/tracker",
+    "site": "chevrolet.uz"
    }
   }
  ],
@@ -143,15 +96,15 @@ window.PHOTOS = {
    "sizes": [
     [
      640,
-     "assets/photos/onix-front-640.jpg"
+     "assets/photos/onix-uz-1-640.jpg"
     ],
     [
      1024,
-     "assets/photos/onix-front-1024.jpg"
+     "assets/photos/onix-uz-1-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/onix-front-1600.jpg"
+     1520,
+     "assets/photos/onix-uz-1-1520.jpg"
     ]
    ],
    "alt": {
@@ -160,10 +113,11 @@ window.PHOTOS = {
     "uz": "Chevrolet Onix, old va yon tomondan ko'rinish"
    },
    "credit": {
-    "author": "Jengtingchen",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Onix_006.jpg"
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/onix",
+    "site": "chevrolet.uz"
    }
   },
   {
@@ -171,15 +125,15 @@ window.PHOTOS = {
    "sizes": [
     [
      640,
-     "assets/photos/onix-side-640.jpg"
+     "assets/photos/onix-uz-2-640.jpg"
     ],
     [
      1024,
-     "assets/photos/onix-side-1024.jpg"
+     "assets/photos/onix-uz-2-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/onix-side-1600.jpg"
+     1520,
+     "assets/photos/onix-uz-2-1520.jpg"
     ]
    ],
    "alt": {
@@ -188,10 +142,308 @@ window.PHOTOS = {
     "uz": "Chevrolet Onix, yon tomondan ko'rinish"
    },
    "credit": {
-    "author": "Just a Man",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Onix_Plus_1.0_Premier_(side).jpg"
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/onix",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/onix-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/onix-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/onix-uz-3-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Onix, interior: dashboard and front seats",
+    "ru": "Chevrolet Onix, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Onix, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/onix",
+    "site": "chevrolet.uz"
+   }
+  }
+ ],
+ "cobalt": [
+  {
+   "view": "front",
+   "sizes": [
+    [
+     640,
+     "assets/photos/cobalt-uz-1-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/cobalt-uz-1-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/cobalt-uz-1-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Cobalt, front three-quarter view",
+    "ru": "Chevrolet Cobalt, вид спереди сбоку",
+    "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/new/cobalt",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "rear",
+   "sizes": [
+    [
+     640,
+     "assets/photos/cobalt-uz-2-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/cobalt-uz-2-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/cobalt-uz-2-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Cobalt, rear three-quarter view",
+    "ru": "Chevrolet Cobalt, вид сзади сбоку",
+    "uz": "Chevrolet Cobalt, orqa va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/new/cobalt",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/cobalt-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/cobalt-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/cobalt-uz-3-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Cobalt, interior: dashboard and front seats",
+    "ru": "Chevrolet Cobalt, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Cobalt, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/new/cobalt",
+    "site": "chevrolet.uz"
+   }
+  }
+ ],
+ "damas": [
+  {
+   "view": "front",
+   "sizes": [
+    [
+     640,
+     "assets/photos/damas-uz-1-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/damas-uz-1-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/damas-uz-1-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Damas, front three-quarter view",
+    "ru": "Chevrolet Damas, вид спереди сбоку",
+    "uz": "Chevrolet Damas, old va yon tomondan ko'rinish"
+   },
+   "pos": "18% 50%",
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/damas",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "rear",
+   "sizes": [
+    [
+     640,
+     "assets/photos/damas-uz-2-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/damas-uz-2-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/damas-uz-2-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Damas, rear three-quarter view",
+    "ru": "Chevrolet Damas, вид сзади сбоку",
+    "uz": "Chevrolet Damas, orqa va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/damas",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/damas-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/damas-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/damas-uz-3-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Damas, interior: dashboard and front seats",
+    "ru": "Chevrolet Damas, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Damas, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/damas",
+    "site": "chevrolet.uz"
+   }
+  }
+ ],
+ "tahoe": [
+  {
+   "view": "front",
+   "sizes": [
+    [
+     640,
+     "assets/photos/tahoe-uz-1-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/tahoe-uz-1-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/tahoe-uz-1-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Tahoe, front three-quarter view",
+    "ru": "Chevrolet Tahoe, вид спереди сбоку",
+    "uz": "Chevrolet Tahoe, old va yon tomondan ko'rinish"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/2025/tahoe",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/tahoe-uz-2-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/tahoe-uz-2-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/tahoe-uz-2-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Tahoe, interior: dashboard and front seats",
+    "ru": "Chevrolet Tahoe, салон: передняя панель и передние сиденья",
+    "uz": "Chevrolet Tahoe, salon: old panel va old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/2025/tahoe",
+    "site": "chevrolet.uz"
+   }
+  },
+  {
+   "view": "interior",
+   "sizes": [
+    [
+     640,
+     "assets/photos/tahoe-uz-3-640.jpg"
+    ],
+    [
+     1024,
+     "assets/photos/tahoe-uz-3-1024.jpg"
+    ],
+    [
+     1520,
+     "assets/photos/tahoe-uz-3-1520.jpg"
+    ]
+   ],
+   "alt": {
+    "en": "Chevrolet Tahoe, interior: front seats",
+    "ru": "Chevrolet Tahoe, салон: передние сиденья",
+    "uz": "Chevrolet Tahoe, salon: old o'rindiqlar"
+   },
+   "credit": {
+    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
+    "license": "",
+    "licenseUrl": "",
+    "page": "https://chevrolet.uz/2025/tahoe",
+    "site": "chevrolet.uz"
    }
   }
  ],
@@ -221,7 +473,8 @@ window.PHOTOS = {
     "author": "Timuraxunov",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(2).JPG"
+    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(2).JPG",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -249,89 +502,8 @@ window.PHOTOS = {
     "author": "Timuraxunov",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(1).JPG"
-   }
-  }
- ],
- "tracker": [
-  {
-   "view": "front",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tracker-front-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tracker-front-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/tracker-front-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tracker, front three-quarter view",
-    "ru": "Chevrolet Tracker, вид спереди сбоку",
-    "uz": "Chevrolet Tracker, old va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "RL GNZLZ",
-    "license": "CC BY-SA 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Tracker_1.2_Turbo_LS.jpg"
-   }
-  },
-  {
-   "view": "side",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tracker-side-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tracker-side-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/tracker-side-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tracker, side view",
-    "ru": "Chevrolet Tracker, вид сбоку",
-    "uz": "Chevrolet Tracker, yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Jason Lawrence from New York",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevy_Tracker_(52644129378).jpg"
-   }
-  },
-  {
-   "view": "interior",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tracker-interior-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tracker-interior-1024.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tracker, interior: dashboard and front seats",
-    "ru": "Chevrolet Tracker, салон: передняя панель и передние сиденья",
-    "uz": "Chevrolet Tracker, salon: old panel va old o'rindiqlar"
-   },
-   "credit": {
-    "author": "Autosdeprimera",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Tracker_2021_(interior).png"
+    "page": "https://commons.wikimedia.org/wiki/File:Daewoo_gentra_2013_(1).JPG",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -361,7 +533,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_10.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_10.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -389,7 +562,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_15.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:0_Chevrolet_Malibu_(E2XX)_15.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -417,7 +591,8 @@ window.PHOTOS = {
     "author": "Alistair Fernandez",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Malibu_2017_Interior.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_Malibu_2017_Interior.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -447,7 +622,8 @@ window.PHOTOS = {
     "author": "MercurySable99",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Equinox_LT,_front_right,_08-07-2024.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Equinox_LT,_front_right,_08-07-2024.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -475,7 +651,8 @@ window.PHOTOS = {
     "author": "DestinationFearFan",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2018_Chevrolet_Equinox_AWD_from_Oregon.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2018_Chevrolet_Equinox_AWD_from_Oregon.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -503,93 +680,8 @@ window.PHOTOS = {
     "author": "deathpallie325",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2023_Chevrolet_Equinox_interior.jpg"
-   }
-  }
- ],
- "tahoe": [
-  {
-   "view": "front",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tahoe-front-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tahoe-front-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/tahoe-front-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tahoe, front three-quarter view",
-    "ru": "Chevrolet Tahoe, вид спереди сбоку",
-    "uz": "Chevrolet Tahoe, old va yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "Kevauto",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Tahoe_RST,_front_3.7.22.jpg"
-   }
-  },
-  {
-   "view": "side",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tahoe-side-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tahoe-side-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/tahoe-side-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tahoe, side view",
-    "ru": "Chevrolet Tahoe, вид сбоку",
-    "uz": "Chevrolet Tahoe, yon tomondan ko'rinish"
-   },
-   "credit": {
-    "author": "DestinationFearFan",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2021_Chevy_Tahoe.jpg"
-   }
-  },
-  {
-   "view": "interior",
-   "sizes": [
-    [
-     640,
-     "assets/photos/tahoe-interior-640.jpg"
-    ],
-    [
-     1024,
-     "assets/photos/tahoe-interior-1024.jpg"
-    ],
-    [
-     1600,
-     "assets/photos/tahoe-interior-1600.jpg"
-    ]
-   ],
-   "alt": {
-    "en": "Chevrolet Tahoe, interior: dashboard and front seats",
-    "ru": "Chevrolet Tahoe, салон: передняя панель и передние сиденья",
-    "uz": "Chevrolet Tahoe, salon: old panel va old o'rindiqlar"
-   },
-   "credit": {
-    "author": "Ethan Llamas",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:MIAS_2024_-_2024_Chevrolet_Tahoe_5.3_High_Country_V8_interior.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2023_Chevrolet_Equinox_interior.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -615,7 +707,8 @@ window.PHOTOS = {
     "author": "Navigator84",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_(%E7%A7%A6Plus)_DM-i_facelift_01_China_2025-03-29.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_(%E7%A7%A6Plus)_DM-i_facelift_01_China_2025-03-29.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -643,7 +736,8 @@ window.PHOTOS = {
     "author": "Zotyefan",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_DM-i_IMG001.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_DM-i_IMG001.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -671,7 +765,8 @@ window.PHOTOS = {
     "author": "JustAnotherCarDesigner",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_DM-i_facelift_003.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_Qin_Plus_DM-i_facelift_003.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -701,7 +796,8 @@ window.PHOTOS = {
     "author": "Kevauto",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2022_BYD_Song_Plus_DM-i,_front_8.3.23.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2022_BYD_Song_Plus_DM-i,_front_8.3.23.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -729,7 +825,8 @@ window.PHOTOS = {
     "author": "Mateusmatsuda",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_SONG_PLUS_DM-I_LEFT_SIDE_VIEW.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_SONG_PLUS_DM-I_LEFT_SIDE_VIEW.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -757,7 +854,8 @@ window.PHOTOS = {
     "author": "Pancho507",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_song_plus_front_interior.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_song_plus_front_interior.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -787,7 +885,8 @@ window.PHOTOS = {
     "author": "Quzhouliulian",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_Han_EV_012.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_Han_EV_012.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -815,7 +914,8 @@ window.PHOTOS = {
     "author": "Evnerd",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:BYD_Han_EV_20210214.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:BYD_Han_EV_20210214.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -843,7 +943,8 @@ window.PHOTOS = {
     "author": "Ethan Llamas",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2024_BYD_Han_EV_interior.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2024_BYD_Han_EV_interior.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -873,7 +974,8 @@ window.PHOTOS = {
     "author": "Autosdeprimera",
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2024_Kia_Sonet_Zenith_(Colombia)_front_view.png"
+    "page": "https://commons.wikimedia.org/wiki/File:2024_Kia_Sonet_Zenith_(Colombia)_front_view.png",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -901,7 +1003,8 @@ window.PHOTOS = {
     "author": "M Raisfath",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Front_row_of_Kia_New_Sonet_as_seen_from_the_right_during_GIIAS_2026_in_Bandung_20260913_184445.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:Front_row_of_Kia_New_Sonet_as_seen_from_the_right_during_GIIAS_2026_in_Bandung_20260913_184445.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -931,7 +1034,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:00_kia_k5_3_3.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:00_kia_k5_3_3.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -959,7 +1063,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:00_kia_k5_3_5.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:00_kia_k5_3_5.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -987,7 +1092,8 @@ window.PHOTOS = {
     "author": "Damian B Oh",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Kia_K5_Hybrid_DL3_HEV_Martian_Brown_(2).jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:Kia_K5_Hybrid_DL3_HEV_Martian_Brown_(2).jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -1017,7 +1123,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2023_Kia_Sportage_(NQ5)_in_White,_front_left.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2023_Kia_Sportage_(NQ5)_in_White,_front_left.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -1045,7 +1152,8 @@ window.PHOTOS = {
     "author": "Benespit",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:00_Kia_Sportage_(NQ5)_1.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:00_Kia_Sportage_(NQ5)_1.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -1073,7 +1181,8 @@ window.PHOTOS = {
     "author": "Damian B Oh",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_NQ5_Black_Interior_(3).jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:Kia_Sportage_NQ5_Black_Interior_(3).jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ],
@@ -1103,7 +1212,8 @@ window.PHOTOS = {
     "author": "Alex Neman",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "page": "https://commons.wikimedia.org/wiki/File:2024_Chery_Tiggo_7_Pro,_Pakuwon_Trade_Center,_West_Surabaya.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:2024_Chery_Tiggo_7_Pro,_Pakuwon_Trade_Center,_West_Surabaya.jpg",
+    "site": "Wikimedia Commons"
    }
   },
   {
@@ -1131,7 +1241,8 @@ window.PHOTOS = {
     "author": "Retired electrician",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "page": "https://commons.wikimedia.org/wiki/File:Moscow,_Chery_Tiggo_7_promax_white,_Sept_2025_03.jpg"
+    "page": "https://commons.wikimedia.org/wiki/File:Moscow,_Chery_Tiggo_7_promax_white,_Sept_2025_03.jpg",
+    "site": "Wikimedia Commons"
    }
   }
  ]
