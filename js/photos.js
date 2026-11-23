@@ -192,8 +192,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-1-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-1-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-1-1600.jpg"
     ]
    ],
    "alt": {
@@ -201,17 +201,17 @@ window.PHOTOS = {
     "ru": "Chevrolet Cobalt, вид спереди сбоку",
     "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
    },
-   "pos": "74% 50%",
+   "pos": "60% 55%",
    "credit": {
-    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
     "licenseUrl": "",
-    "page": "https://chevrolet.uz/new/cobalt",
-    "site": "chevrolet.uz"
+    "page": "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/",
+    "author": "Chevrolet (GM) press photo",
+    "site": "via Motor1"
    }
   },
   {
-   "view": "front",
+   "view": "side",
    "sizes": [
     [
      640,
@@ -222,25 +222,26 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-2-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-2-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-2-1600.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Cobalt, front three-quarter view",
-    "ru": "Chevrolet Cobalt, вид спереди сбоку",
-    "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
+    "en": "Chevrolet Cobalt, side view",
+    "ru": "Chevrolet Cobalt, вид сбоку",
+    "uz": "Chevrolet Cobalt, yon tomondan ko'rinish"
    },
+   "pos": "40% 60%",
    "credit": {
-    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
     "licenseUrl": "",
-    "page": "https://chevrolet.uz/new/cobalt",
-    "site": "chevrolet.uz"
+    "page": "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/",
+    "author": "Chevrolet (GM) press photo",
+    "site": "via Motor1"
    }
   },
   {
-   "view": "interior",
+   "view": "rear",
    "sizes": [
     [
      640,
@@ -251,21 +252,22 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-3-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/cobalt-uz-3-1520.jpg"
+     1600,
+     "assets/photos/cobalt-uz-3-1600.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Cobalt, interior: dashboard and front seats",
-    "ru": "Chevrolet Cobalt, салон: передняя панель и передние сиденья",
-    "uz": "Chevrolet Cobalt, salon: old panel va old o'rindiqlar"
+    "en": "Chevrolet Cobalt, rear three-quarter view",
+    "ru": "Chevrolet Cobalt, вид сзади сбоку",
+    "uz": "Chevrolet Cobalt, orqa va yon tomondan ko'rinish"
    },
+   "pos": "45% 55%",
    "credit": {
-    "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
     "licenseUrl": "",
-    "page": "https://chevrolet.uz/new/cobalt",
-    "site": "chevrolet.uz"
+    "page": "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/",
+    "author": "Chevrolet (GM) press photo",
+    "site": "via Motor1"
    }
   }
  ],

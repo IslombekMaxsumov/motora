@@ -57,10 +57,11 @@ const OFFICIAL = [
   ["onix", "front", "onix/big/exterior/03.jpg", "https://chevrolet.uz/onix"],
   ["onix", "side", "onix/big/exterior/07.jpg", "https://chevrolet.uz/onix"],
   ["onix", "interior", "onix/big/interior/03.jpg", "https://chevrolet.uz/onix"],
-  // Cobalt: the same official gallery style as the other models (blue car at a glass front)
-  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/exterior/5.jpg", "https://chevrolet.uz/new/cobalt", "74% 50%"],
-  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/exterior/4.jpg", "https://chevrolet.uz/new/cobalt"],
-  ["cobalt", "interior", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/interior/2.jpg", "https://chevrolet.uz/new/cobalt"],
+  // Cobalt: GM press photos of the silver launch car, picked by Islom (2026-11-23).
+  // Press photos are released for editorial use; credited to GM with a link to where they were published.
+  ["cobalt", "front", "https://cdn.motor1.com/images/mgl/Yzgvr/s1/2011-276625-2012-chevrolet-cobalt-07-11-20111.jpg", "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/", "60% 55%", { author: "Chevrolet (GM) press photo", site: "via Motor1" }],
+  ["cobalt", "side", "https://cdn.motor1.com/images/mgl/nlbQk/s1/2011-276631-2012-chevrolet-cobalt-07-11-20111.jpg", "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/", "40% 60%", { author: "Chevrolet (GM) press photo", site: "via Motor1" }],
+  ["cobalt", "rear", "https://cdn.motor1.com/images/mgl/Q7vr8/s1/2011-276627-2012-chevrolet-cobalt-07-11-20111.jpg", "https://www.motor1.com/news/28575/2012-chevrolet-cobalt-revealed/", "45% 55%", { author: "Chevrolet (GM) press photo", site: "via Motor1" }],
   // Gentra (sold as Lacetti since 2023) and Malibu XL are gone from chevrolet.uz; their
   // official galleries are taken from the Internet Archive copy of the same site
   ["gentra", "front", "https://web.archive.org/web/20260314203544id_/https://chevrolet.uz/assets/images/lacetti/exterior/1.jpg", "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti"],
@@ -118,7 +119,7 @@ const PHOTOS = {};
 const altFor = (model, view) => Object.fromEntries(["en", "ru", "uz"].map((l) => [l, ALT[view][l].replace("{n}", NAMES[model])]));
 
 // 1. official Chevrolet Uzbekistan photos
-for (const [model, view, path, page, pos] of OFFICIAL) {
+for (const [model, view, path, page, pos, by] of OFFICIAL) {
   const n = (PHOTOS[model] || []).length + 1;
   const base = `${model}-uz-${n}`;
   if (!existsSync(dir + `${base}-640.jpg`)) {
@@ -137,7 +138,7 @@ for (const [model, view, path, page, pos] of OFFICIAL) {
       .map((w) => [w, `assets/photos/${base}-${w}.jpg`]),
     alt: altFor(model, view),
     ...(pos ? { pos } : {}),
-    credit: { author: "Chevrolet Uzbekistan (UzAuto Motors)", license: "", licenseUrl: "", page, site: page.includes("web.archive.org") ? "chevrolet.uz (Internet Archive copy)" : "chevrolet.uz" },
+    credit: by ? { license: "", licenseUrl: "", page, ...by } : { author: "Chevrolet Uzbekistan (UzAuto Motors)", license: "", licenseUrl: "", page, site: page.includes("web.archive.org") ? "chevrolet.uz (Internet Archive copy)" : "chevrolet.uz" },
   });
   console.log(model, view, "ok (official)");
 }
