@@ -51,8 +51,9 @@ const PICKS = [
 // [model, view, path under chevrolet.uz/assets/images/, model page, object-position (optional)]
 // The gallery photos are 1520 x 627; cards crop them to 4:3, so pos keeps the car in frame.
 const OFFICIAL = [
-  ["tracker", "front", "tracker/big/exterior/02.jpg", "https://chevrolet.uz/tracker"],
-  ["tracker", "other", "tracker/big/exterior/03.jpg", "https://chevrolet.uz/tracker"],
+  // Tracker: the 1903 px page photos (sunset on green hills; at a glass building) from the same official shoot
+  ["tracker", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/tracker/index.jpg", "https://chevrolet.uz/tracker", "62% 55%"],
+  ["tracker", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/tracker/exterior/ex-1.jpg", "https://chevrolet.uz/tracker", "45% 60%"],
   ["tracker", "interior", "tracker/big/interior/08.jpg", "https://chevrolet.uz/tracker"],
   ["onix", "front", "onix/big/exterior/03.jpg", "https://chevrolet.uz/onix"],
   ["onix", "side", "onix/big/exterior/07.jpg", "https://chevrolet.uz/onix"],

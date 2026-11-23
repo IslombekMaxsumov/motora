@@ -122,11 +122,18 @@ body.no-scroll { overflow: hidden; }
 .quick-search { display: grid; gap: var(--s3); padding: var(--s4); background: var(--band); border-radius: var(--r-panel); }
 .qs-title { font-size: 1rem; }
 .hero-finder { font-size: 0.875rem; color: var(--ink-2); }
+/* desktop: text, quick search and the finder link stack on the left, the featured car fills the right,
+   so the two columns end at about the same height */
 @media (min-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; column-gap: var(--s10); padding-top: var(--s6); }
-  .quick-search, .hero-finder { grid-column: 1 / -1; }
-  .quick-search { grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto; align-items: end; gap: var(--s4); padding: var(--s4) var(--s5); }
-  .qs-title { align-self: center; padding-right: var(--s2); }
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-areas: "text featured" "search featured" "finder featured"; grid-template-rows: auto auto 1fr; align-items: start; gap: var(--s6) var(--s10); padding-top: var(--s6); }
+  .hero-text { grid-area: text; }
+  .featured { grid-area: featured; }
+  /* two columns, so long Russian and Uzbek options are not cut off: body | budget, condition | button */
+  .quick-search { grid-area: search; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: var(--s3) var(--s4); padding: var(--s5); }
+  .qs-title { grid-column: 1 / -1; }
+  .quick-search > .btn { min-height: 46px; }
+  .featured .photo { aspect-ratio: 4 / 3; }
+  .hero-finder { grid-area: finder; }
 }
 /* body types: a row of names over a rule that darkens on hover */
 .tile-list { display: grid; gap: 0 var(--s4); grid-template-columns: repeat(2, minmax(0, 1fr)); }

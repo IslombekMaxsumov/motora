@@ -14,8 +14,8 @@ window.PHOTOS = {
      "assets/photos/tracker-uz-1-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/tracker-uz-1-1520.jpg"
+     1600,
+     "assets/photos/tracker-uz-1-1600.jpg"
     ]
    ],
    "alt": {
@@ -23,6 +23,7 @@ window.PHOTOS = {
     "ru": "Chevrolet Tracker, вид спереди сбоку",
     "uz": "Chevrolet Tracker, old va yon tomondan ko'rinish"
    },
+   "pos": "62% 55%",
    "credit": {
     "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
@@ -43,15 +44,16 @@ window.PHOTOS = {
      "assets/photos/tracker-uz-2-1024.jpg"
     ],
     [
-     1520,
-     "assets/photos/tracker-uz-2-1520.jpg"
+     1600,
+     "assets/photos/tracker-uz-2-1600.jpg"
     ]
    ],
    "alt": {
-    "en": "Chevrolet Tracker, front three-quarter view from above",
-    "ru": "Chevrolet Tracker, вид спереди сверху",
-    "uz": "Chevrolet Tracker, old tomondan yuqoridan ko'rinish"
+    "en": "Chevrolet Tracker, front three-quarter view",
+    "ru": "Chevrolet Tracker, вид спереди сбоку",
+    "uz": "Chevrolet Tracker, old va yon tomondan ko'rinish"
    },
+   "pos": "45% 60%",
    "credit": {
     "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
