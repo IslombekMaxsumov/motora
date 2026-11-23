@@ -1,8 +1,11 @@
 /* ==========================================================
    MOTORA page layouts. "The cars provide the emotion, the interface
-   provides the intelligence": quiet surfaces, borders instead of
-   shadows, numbers in Manrope with tabular figures, the gold accent
-   only for lines, meters and the main action.
+   provides the intelligence". Open layouts: sections are separated by
+   space, type and thin dividers, not boxes. Only the things you act on
+   or read as a result get a surface (fields, the quick search, the key
+   result of each tool, the ownership panel). Numbers in Manrope with
+   tabular figures; the brass accent only for lines, meters and the main
+   action.
    Mobile first; wider layouts in min-width media queries.
    ========================================================== */
 
@@ -15,11 +18,11 @@ body.no-scroll { overflow: hidden; }
 .page-title { font-size: clamp(1.625rem, 4.5vw, 2.25rem); }
 .lead { max-width: 60ch; color: var(--ink-2); margin-top: var(--s2); font-size: 1rem; }
 .section { margin-top: var(--s12); }
+@media (min-width: 960px) { .section { margin-top: var(--s16); } }
 .section > h2, .section-head h2 { font-size: 1.25rem; margin-bottom: var(--s4); }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); flex-wrap: wrap; }
 .more-link { font-size: 0.875rem; font-weight: 500; }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); padding: var(--s5); }
-.empty { display: grid; gap: var(--s3); justify-items: start; padding: var(--s6); border: 1px dashed var(--line-strong); border-radius: var(--r-panel); color: var(--ink-2); }
+.empty { display: grid; gap: var(--s3); justify-items: start; padding-block: var(--s6); border-top: 1px solid var(--line); color: var(--ink-2); }
 .empty h2 { color: var(--ink); font-size: 1.125rem; }
 .table-wrap { overflow-x: auto; position: relative; } /* relative: hidden screen-reader labels inside stay in the box */
 .price { font-family: var(--font-head); font-weight: 700; }
@@ -47,7 +50,7 @@ body.no-scroll { overflow: hidden; }
 }
 @media (max-width: 959px) {
   :root { --tabbar-h: 64px; }
-  .site-nav { position: fixed; inset: auto 0 0 0; z-index: 40; background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+  .site-nav { position: fixed; inset: auto 0 0 0; z-index: 40; background: var(--band); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
   .site-nav ul { justify-content: space-around; gap: 0; }
   .site-nav li { flex: 1; min-width: 0; }
   .site-nav a { flex-direction: column; gap: 3px; padding: 9px 2px 8px; font-size: 0.6875rem; text-align: center; border-radius: 0; }
@@ -67,13 +70,13 @@ body.no-scroll { overflow: hidden; }
 .photo-fallback small { font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ---------- car cards ---------- */
-.card-grid { display: grid; gap: var(--s3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (min-width: 640px) { .card-grid { gap: var(--s4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); } }
-.car-card { position: relative; display: grid; grid-template-rows: auto 1fr; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); overflow: hidden; transition: border-color var(--fast) var(--ease); }
-.car-card:hover { border-color: var(--line-strong); }
-.card-photo { position: relative; }
+.card-grid { display: grid; gap: var(--s6) var(--s3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 640px) { .card-grid { gap: var(--s8) var(--s5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); } }
+.car-card { position: relative; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.card-photo { position: relative; border-radius: var(--r-ctl); overflow: hidden; }
+.car-card:hover .card-title a { text-decoration: underline; text-decoration-thickness: 1px; }
 .card-photo .badges { position: absolute; top: 8px; left: 8px; }
-.card-body { display: grid; gap: 4px; padding: var(--s3); align-content: start; min-width: 0; }
+.card-body { display: grid; gap: 4px; padding-top: var(--s3); align-content: start; min-width: 0; }
 .card-title { font-size: 0.9375rem; font-weight: 600; }
 .card-title a { color: var(--ink); text-decoration: none; }
 .card-title a::after { content: ""; position: absolute; inset: 0; } /* the whole card opens the car */
@@ -82,7 +85,6 @@ body.no-scroll { overflow: hidden; }
 .card-note { font-size: 0.75rem; color: var(--ink-2); }
 .card-actions { position: relative; z-index: 1; display: flex; gap: 6px; margin-top: var(--s2); } /* above the card link */
 .card-actions .icon-btn { width: 36px; height: 36px; }
-@media (min-width: 640px) { .card-body { padding: var(--s4); } }
 /* the MOTORA ownership line */
 .own { display: grid; gap: 1px; padding-top: var(--s2); margin-top: var(--s1); border-top: 1px solid var(--line); }
 .own-total { font-size: 0.8125rem; }
@@ -110,14 +112,14 @@ body.no-scroll { overflow: hidden; }
 .stats li + li { padding-left: var(--s3); border-left: 1px solid var(--line); }
 .stats strong { font-family: var(--font-head); font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; line-height: 1; }
 .stats span { font-size: 0.8125rem; color: var(--ink-2); }
-.featured { display: grid; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); overflow: hidden; }
-.featured .photo { aspect-ratio: 16 / 9; }
-.featured-info { display: grid; gap: 4px; padding: var(--s4); }
+.featured { display: grid; }
+.featured .photo { aspect-ratio: 16 / 9; border-radius: var(--r-panel); }
+.featured-info { display: grid; gap: 4px; padding-top: var(--s4); }
 .featured-info h2 { font-size: 1.125rem; }
 .featured-info h2 a { color: var(--ink); text-decoration: none; }
 .featured-info h2 a:hover { text-decoration: underline; }
 .featured-price { font-size: 1.5rem; }
-.quick-search { display: grid; gap: var(--s3); padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.quick-search { display: grid; gap: var(--s3); padding: var(--s4); background: var(--band); border-radius: var(--r-panel); }
 .qs-title { font-size: 1rem; }
 .hero-finder { font-size: 0.875rem; color: var(--ink-2); }
 @media (min-width: 960px) {
@@ -126,10 +128,11 @@ body.no-scroll { overflow: hidden; }
   .quick-search { grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto; align-items: end; gap: var(--s4); padding: var(--s4) var(--s5); }
   .qs-title { align-self: center; padding-right: var(--s2); }
 }
-.tile-list { display: grid; gap: var(--s2); grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (min-width: 760px) { .tile-list { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-.tile { display: grid; gap: 2px; height: 100%; padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); text-decoration: none; color: var(--ink); transition: border-color var(--fast) var(--ease); }
-.tile:hover { border-color: var(--ink); color: var(--ink); }
+/* body types: a row of names over a rule that darkens on hover */
+.tile-list { display: grid; gap: 0 var(--s4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 760px) { .tile-list { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 var(--s5); } }
+.tile { display: grid; gap: 2px; height: 100%; padding: var(--s3) 0 var(--s4); border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: border-color var(--fast) var(--ease); }
+.tile:hover { border-top-color: var(--ink); color: var(--ink); }
 .tile strong { font-family: var(--font-head); font-size: 1rem; }
 .tile span { color: var(--ink-2); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
 .tool-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
@@ -140,8 +143,8 @@ body.no-scroll { overflow: hidden; }
 .tool span { color: var(--ink-2); font-size: 0.875rem; }
 .tool:hover strong { text-decoration: underline; }
 @media (min-width: 760px) { .tool { grid-template-columns: 1fr; padding: var(--s4) 0 0; border-bottom: 0; border-top: 2px solid var(--ink); } .tool .icon { grid-row: auto; margin-bottom: var(--s2); } }
-.room-list { display: grid; gap: var(--s3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
-.room { display: grid; gap: 4px; padding: var(--s4); border: 1px solid var(--line); border-radius: var(--r-panel); font-size: 0.875rem; }
+.room-list { display: grid; gap: var(--s5) var(--s6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.room { display: grid; gap: 4px; font-size: 0.875rem; }
 .room strong { font-family: var(--font-head); font-size: 1rem; }
 
 /* ---------- cars in stock ---------- */
@@ -215,10 +218,10 @@ body.no-scroll { overflow: hidden; }
 .own-rows a { color: var(--ink); }
 .own-disclaimer { font-size: 0.75rem; color: var(--ink-2); }
 /* the running-cost calculator: a proper tool */
-.cost-tool { padding: var(--s5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.cost-tool { padding-top: var(--s6); border-top: 1px solid var(--line); }
 .cost-tool > p { color: var(--ink-2); margin-top: calc(-1 * var(--s2)); margin-bottom: var(--s5); max-width: 60ch; }
 .cost-layout { display: grid; gap: var(--s6); }
-@media (min-width: 760px) { .cost-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s8); } }
+@media (min-width: 760px) { .cost-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s10); } .cost-result { padding-left: var(--s10); border-left: 1px solid var(--line); } }
 .cost-inputs { display: grid; gap: var(--s4); align-content: start; }
 .cost-result { display: grid; gap: var(--s2); align-content: start; }
 .cost-label-top { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
@@ -246,19 +249,19 @@ body.no-scroll { overflow: hidden; }
 
 /* ---------- finder, finance and trade-in: inputs | results ---------- */
 .finder-layout, .finance-layout, .trade-layout { display: grid; gap: var(--s6); margin-top: var(--s6); }
-.finder-form, .finance-form, .trade-form { display: grid; gap: var(--s5); align-content: start; padding: var(--s5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.finder-form, .finance-form, .trade-form { display: grid; gap: var(--s5); align-content: start; }
 @media (min-width: 960px) {
-  .finder-layout { grid-template-columns: 340px minmax(0, 1fr); gap: var(--s8); align-items: start; }
-  .finance-layout, .trade-layout { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--s8); align-items: start; }
-  .finder-form, .finance-form { position: sticky; top: calc(var(--header-h) + var(--s4)); max-height: calc(100vh - var(--header-h) - var(--s8)); overflow-y: auto; }
+  .finder-layout { grid-template-columns: 320px minmax(0, 1fr); gap: var(--s12); align-items: start; }
+  .finance-layout, .trade-layout { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: var(--s12); align-items: start; }
+  .finder-form, .finance-form { padding-right: var(--s2); position: sticky; top: calc(var(--header-h) + var(--s4)); max-height: calc(100vh - var(--header-h) - var(--s8)); overflow-y: auto; }
 }
 .choice { display: grid; gap: var(--s2); }
 .choice legend { margin-bottom: var(--s2); }
 
 /* finder results */
 .finder-results h2 { font-size: 1.25rem; }
-.match-list { display: grid; gap: var(--s3); margin-top: var(--s3); }
-.match { display: grid; grid-template-columns: 1fr; gap: var(--s3); padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.match-list { display: grid; margin-top: var(--s3); }
+.match { display: grid; grid-template-columns: 1fr; gap: var(--s3); padding-block: var(--s5); border-top: 1px solid var(--line); }
 .match-score { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--s3); }
 .match-score strong { font-family: var(--font-head); font-size: 1.75rem; font-weight: 700; line-height: 1; min-width: 3.2ch; }
 .meter { height: 6px; border-radius: 3px; background: var(--raised); overflow: hidden; }
@@ -283,14 +286,15 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* finance */
-.finance-result { display: grid; gap: var(--s4); min-width: 0; }
-.payment, .trade-result, .drive-done { display: grid; gap: var(--s2); padding: var(--s5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.finance-result { display: grid; gap: var(--s8); min-width: 0; }
+.payment, .trade-result, .drive-done { display: grid; gap: var(--s2); padding: var(--s5); background: var(--band); border-radius: var(--r-panel); }
+@media (min-width: 640px) { .payment, .trade-result, .drive-done { padding: var(--s6); } }
 .pay-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
 .pay-big { font-family: var(--font-head); font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
 .pay-rows { margin-top: var(--s2); }
 .pay-rows div { display: flex; justify-content: space-between; gap: var(--s3); padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.9375rem; }
 .pay-rows dd { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
-.chart { padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.chart { min-width: 0; }
 .chart-figure { margin: 0; }
 .chart-figure figcaption { font-family: var(--font-head); font-weight: 600; margin-bottom: var(--s2); }
 .chart-svg { width: 100%; height: auto; }
@@ -298,17 +302,17 @@ body.no-scroll { overflow: hidden; }
 .chart-text { fill: var(--ink-2); font-size: 12px; font-family: var(--font-body); }
 .chart-line { fill: none; stroke: var(--chart); stroke-width: 2.5; }
 .chart-area { fill: color-mix(in srgb, var(--chart) 14%, transparent); }
-.schedule { padding: 0 var(--s4); border: 1px solid var(--line); border-radius: var(--r-panel); background: var(--surface); }
+.schedule { border-block: 1px solid var(--line); }
 .schedule summary { cursor: pointer; padding: var(--s3) 0; font-weight: 500; }
 .schedule[open] summary { border-bottom: 1px solid var(--line); }
 .schedule .table td, .schedule .table th { white-space: nowrap; }
 .afford:empty { display: none; }
-.afford p { padding: var(--s3) var(--s4); border-radius: var(--r-ctl); border-left: 3px solid; background: var(--surface); }
+.afford p { padding: var(--s1) 0 var(--s1) var(--s4); border-left: 3px solid; }
 .afford-ok { border-color: var(--ok) !important; } .afford-ok strong { color: var(--ok); }
 .afford-careful { border-color: var(--warn) !important; } .afford-careful strong { color: var(--warn); }
 .afford-high { border-color: var(--danger) !important; } .afford-high strong { color: var(--danger); }
-.budget-tool { display: grid; gap: var(--s6); margin-top: var(--s4); padding: var(--s5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
-@media (min-width: 760px) { .budget-tool { grid-template-columns: 1fr 1fr; gap: var(--s8); } }
+.budget-tool { display: grid; gap: var(--s6); margin-top: var(--s4); padding-top: var(--s6); border-top: 1px solid var(--line); }
+@media (min-width: 760px) { .budget-tool { grid-template-columns: 1fr 1fr; gap: var(--s10); } .budget-result { padding-left: var(--s10); border-left: 1px solid var(--line); } }
 .budget-inputs { display: grid; gap: var(--s4); align-content: start; }
 .budget-result { display: grid; gap: var(--s2); align-content: start; }
 .budget-cars { display: grid; gap: 0; margin-top: var(--s2); }
@@ -336,39 +340,39 @@ body.no-scroll { overflow: hidden; }
 .trade-actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; margin-block: var(--s3); }
 
 /* ---------- garage ---------- */
-.jump-links { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
-.jump-links a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink); font-size: 0.875rem; font-weight: 500; }
-.jump-links a:hover { border-color: var(--ink); }
+.jump-links { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s5); margin-top: var(--s3); }
+.jump-links a { padding-block: 6px; color: var(--ink); font-size: 0.875rem; font-weight: 500; text-decoration-color: var(--ink-3); }
+.jump-links a:hover { text-decoration-color: currentColor; }
 #compareView { display: grid; gap: var(--s4); }
 #compareView .slider-field { max-width: 420px; }
-.compare-table { min-width: 560px; background: var(--surface); }
+.compare-table { min-width: 560px; }
 .compare-table thead th { vertical-align: bottom; }
 .compare-table th[scope="col"] { min-width: 150px; color: var(--ink); font-family: var(--font-head); font-weight: 600; font-size: 0.875rem; }
 .compare-table th[scope="col"] a { color: var(--ink); text-decoration: none; }
 .compare-table th[scope="col"] .icon-btn { width: 28px; height: 28px; margin-top: 6px; }
 /* keep the row names visible while the cars scroll sideways */
-.compare-table tbody th, .compare-table tfoot th, .compare-table thead td { position: sticky; left: 0; z-index: 1; background: var(--surface); min-width: 120px; max-width: 160px; color: var(--ink-2); font-weight: 500; }
-.compare-table .is-best { background: color-mix(in srgb, var(--ok) 9%, var(--surface)); font-weight: 600; }
+.compare-table tbody th, .compare-table tfoot th, .compare-table thead td { position: sticky; left: 0; z-index: 1; background: var(--bg); min-width: 120px; max-width: 160px; color: var(--ink-2); font-weight: 500; }
+.compare-table .is-best { background: color-mix(in srgb, var(--ok) 10%, var(--bg)); font-weight: 600; }
 .best-mark { display: inline-flex; vertical-align: -2px; margin-left: 6px; color: var(--ok); }
 .compare-table tfoot td, .compare-table tfoot th { border-top: 2px solid var(--ink); border-bottom: 0; font-weight: 600; color: var(--ink); }
-.booking-list { display: grid; gap: var(--s3); }
-.booking { display: grid; gap: 4px; padding: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.booking-list { display: grid; }
+.booking { display: grid; gap: 4px; padding-block: var(--s4); border-top: 1px solid var(--line); }
 .booking.is-past { opacity: 0.65; }
 .booking-when strong { font-family: var(--font-head); }
 .booking-actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); }
 
 /* ---------- test drive ---------- */
-.drive-form { display: grid; gap: var(--s5); max-width: 760px; margin-top: var(--s6); padding: var(--s5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.drive-form { display: grid; gap: var(--s6); max-width: 760px; margin-top: var(--s6); }
 .drive-room { display: flex; gap: var(--s2); align-items: center; color: var(--ink-2); font-size: 0.875rem; }
 .day-row { display: flex; gap: var(--s2); overflow-x: auto; padding: 2px 2px var(--s2); }
-.day, .slot { position: relative; display: grid; justify-items: center; gap: 1px; padding: var(--s2) 0; border: 1px solid var(--line); border-radius: var(--r-ctl); background: var(--surface); cursor: pointer; transition: background-color var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease); }
+.day, .slot { position: relative; display: grid; justify-items: center; gap: 1px; padding: var(--s2) 0; border: 1px solid transparent; border-radius: var(--r-ctl); background: var(--raised); cursor: pointer; transition: background-color var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease); }
 .day { flex: none; width: 60px; }
 .day input, .slot input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .day:hover, .slot:hover { border-color: var(--line-strong); }
 .day:has(input:checked), .slot:has(input:checked) { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .day:has(input:checked) .day-week, .day:has(input:checked) .day-month { color: var(--bg); }
 .day:has(input:focus-visible), .slot:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
-.day.is-disabled, .slot:has(input:disabled) { cursor: not-allowed; background: var(--raised); border-color: transparent; color: var(--ink-2); }
+.day.is-disabled, .slot:has(input:disabled) { cursor: not-allowed; background: transparent; border-color: var(--line); color: var(--ink-2); }
 .slot:has(input:disabled) span { text-decoration: line-through; }
 .day-num { font-family: var(--font-head); font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .day-week, .day-month, .slot small { font-size: 0.6875rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -384,7 +388,8 @@ body.no-scroll { overflow: hidden; }
 .drive-done .pay-big { letter-spacing: 0.06em; }
 
 /* ---------- footer ---------- */
-.site-footer { margin-top: var(--s12); padding-block: var(--s8); background: var(--raised); }
+.site-footer { margin-top: var(--s16); padding-block: var(--s10) var(--s8); background: var(--raised); }
+:root[data-theme="dark"] .site-footer { background: var(--surface); }
 .footer-inner { display: grid; gap: var(--s6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
 .footer-brand { display: grid; gap: var(--s3); align-content: start; color: var(--ink-2); font-size: 0.875rem; }
 .footer-brand .logo-svg { height: 22px; }
@@ -408,3 +413,6 @@ body.no-scroll { overflow: hidden; }
   .site-nav .nav-full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .site-nav .nav-short { display: block; }
 }
+
+/* dark: the best value in the comparison is marked by its tick and weight on a neutral step, not a green wash */
+:root[data-theme="dark"] .compare-table .is-best { background: var(--raised); }
