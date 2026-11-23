@@ -57,10 +57,10 @@ const OFFICIAL = [
   ["onix", "front", "onix/big/exterior/03.jpg", "https://chevrolet.uz/onix"],
   ["onix", "side", "onix/big/exterior/07.jpg", "https://chevrolet.uz/onix"],
   ["onix", "interior", "onix/big/interior/03.jpg", "https://chevrolet.uz/onix"],
-  // Cobalt: the 1903 px launch photos (Tashkent City, Bukhara) instead of the red and blue gallery shots
-  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/main-event.jpg", "https://chevrolet.uz/new/cobalt", "45% 60%"],
-  ["cobalt", "front", "https://web.archive.org/web/2025id_/https://chevrolet.uz/assets/images/cobalt/index.jpg", "https://chevrolet.uz/new/cobalt"],
-  ["cobalt", "interior", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/1.jpg", "https://chevrolet.uz/new/cobalt"],
+  // Cobalt: the same official gallery style as the other models (blue car at a glass front)
+  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/exterior/5.jpg", "https://chevrolet.uz/new/cobalt", "74% 50%"],
+  ["cobalt", "front", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/exterior/4.jpg", "https://chevrolet.uz/new/cobalt"],
+  ["cobalt", "interior", "https://web.archive.org/web/2026id_/https://chevrolet.uz/assets/images/cobalt2025/gallery/big/interior/2.jpg", "https://chevrolet.uz/new/cobalt"],
   // Gentra (sold as Lacetti since 2023) and Malibu XL are gone from chevrolet.uz; their
   // official galleries are taken from the Internet Archive copy of the same site
   ["gentra", "front", "https://web.archive.org/web/20260314203544id_/https://chevrolet.uz/assets/images/lacetti/exterior/1.jpg", "https://web.archive.org/web/20260314203544/https://www.chevrolet.uz/lacetti"],

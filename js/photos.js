@@ -192,8 +192,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-1-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/cobalt-uz-1-1600.jpg"
+     1520,
+     "assets/photos/cobalt-uz-1-1520.jpg"
     ]
    ],
    "alt": {
@@ -201,7 +201,7 @@ window.PHOTOS = {
     "ru": "Chevrolet Cobalt, вид спереди сбоку",
     "uz": "Chevrolet Cobalt, old va yon tomondan ko'rinish"
    },
-   "pos": "45% 60%",
+   "pos": "74% 50%",
    "credit": {
     "author": "Chevrolet Uzbekistan (UzAuto Motors)",
     "license": "",
@@ -222,8 +222,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-2-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/cobalt-uz-2-1600.jpg"
+     1520,
+     "assets/photos/cobalt-uz-2-1520.jpg"
     ]
    ],
    "alt": {
@@ -251,8 +251,8 @@ window.PHOTOS = {
      "assets/photos/cobalt-uz-3-1024.jpg"
     ],
     [
-     1600,
-     "assets/photos/cobalt-uz-3-1600.jpg"
+     1520,
+     "assets/photos/cobalt-uz-3-1520.jpg"
     ]
    ],
    "alt": {
